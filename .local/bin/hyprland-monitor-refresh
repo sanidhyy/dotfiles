@@ -1,0 +1,29 @@
+#!/bin/bash
+
+source ~/.config/omarchy-custom/constants/monitors.env
+
+SOCKET="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+handle() {
+    case $1 in
+        monitorremoved\>\>*|monitorremovedv2\>\>*)
+            ~/.local/bin/omarchy-custom-waybar-swap single
+            ~/.local/bin/omarchy-custom-theme-bg-restore
+            ;;
+        monitoradded\>\>*|monitoraddedv2\>\>*)
+            ~/.local/bin/omarchy-custom-waybar-swap dual
+            ~/.local/bin/omarchy-custom-theme-bg-restore
+            ;;
+    esac
+}
+
+if hyprctl monitors | grep -q "Monitor $EXT_MONITOR"; then
+    ~/.local/bin/omarchy-custom-waybar-swap dual
+else
+    ~/.local/bin/omarchy-custom-waybar-swap single
+fi
+
+socat -U - "UNIX-CONNECT:$SOCKET" | while read -r event; do
+  handle "$event"
+done
+

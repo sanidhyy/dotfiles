@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Force Hyprland to fix squished window layouts
+hyprctl dispatch layoutmsg recalculate >/dev/null 2>&1
+
+# Wait a fraction of a second for workspaces to settle
+sleep 0.5
+
+# Respawn the live wallpaper across active monitors
+BG_FILE="$HOME/.cache/omarchy-custom/background.file"
+if [[ -f "$BG_FILE" ]]; then
+    ~/.local/bin/omarchy-custom-theme-bg-set "$(cat "$BG_FILE")" >/dev/null 2>&1 &
+fi
+

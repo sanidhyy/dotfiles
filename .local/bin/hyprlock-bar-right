@@ -1,0 +1,15 @@
+#!/bin/bash
+
+np_raw=$(~/.local/bin/waybar-now-playing | jq -r '.text // ""')
+bat_raw=$(~/.local/bin/hyprlock-battery-indicator)
+
+[[ -n $np_raw ]] && np="<span size=\"smaller\">$np_raw</span>"
+[[ -n $bat_raw ]] && bat="<span alpha=\"100%\">$bat_raw</span>"
+
+if [[ -n $np && -n $bat ]]; then
+  echo "$np   $bat"
+elif [[ -n $np ]]; then
+  echo "$np"
+elif [[ -n $bat ]]; then
+  echo "$bat"
+fi

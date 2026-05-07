@@ -1,0 +1,41 @@
+#!/bin/bash
+
+TARGET_FILE="$1"
+
+if [[ ! -f "$TARGET_FILE" ]]; then
+  echo "Target file not found: $TARGET_FILE"
+  exit 1
+fi
+
+CACHE_DIR="$HOME/.cache/omarchy-custom/live_thumbs"
+EXT_FILE="$HOME/.config/omarchy-custom/constants/video_exts.list"
+
+mkdir -p "$CACHE_DIR"
+
+filename=$(basename "$TARGET_FILE")
+extension="${filename##*.}"
+extension="${extension,,}"
+
+exts=$(<"$EXT_FILE")
+EXT_PATTERN="^(${exts//$'\n'/|})$"
+
+echo "$TARGET_FILE" > "$HOME/.cache/omarchy-custom/background.file"
+
+if [[ "$extension" =~ $EXT_PATTERN ]]; then
+  pkill -x swaybg
+  pkill -x mpvpaper
+
+  setsid uwsm-app -- mpvpaper -p -o "no-audio loop-file=inf hwdec=auto-safe cache=no keepaspect=no" '*' "$TARGET_FILE" >/dev/null 2>&1 &
+
+  STATIC_THUMB="$CACHE_DIR/${filename%.*}.jpg"
+
+  if [[ ! -f "$STATIC_THUMB" ]]; then
+    ffmpeg -i "$TARGET_FILE" -vframes 1 -q:v 2 "$STATIC_THUMB" -loglevel error
+  fi
+
+  ln -nsf "$STATIC_THUMB" "$HOME/.config/omarchy/current/background"
+else
+  pkill -x mpvpaper
+
+  omarchy-theme-bg-set "$TARGET_FILE"
+fi

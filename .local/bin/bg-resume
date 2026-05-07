@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -f /tmp/gamemode_bg_vid ]; then
+    VID_PATH=$(cat /tmp/gamemode_bg_vid)
+
+    ~/.local/bin/omarchy-custom-theme-bg-set "$VID_PATH"
+
+    rm /tmp/gamemode_bg_vid
+fi

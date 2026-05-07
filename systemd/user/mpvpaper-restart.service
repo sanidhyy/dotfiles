@@ -1,0 +1,7 @@
+[Unit]
+Description=Restart mpvpaper to flush memory leaks
+
+[Service]
+Type=oneshot
+KillMode=process
+ExecStart=%h/.local/bin/mpvpaper-restart

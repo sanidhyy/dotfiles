@@ -1,0 +1,243 @@
+[
+  // Main Bar
+  {
+    "include": [
+      "~/.config/waybar/workspaces-active.jsonc"
+    ],
+    "reload_style_on_change": true,
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "margin-bottom": 0,
+    "height": 30,
+    "modules-left": [
+      "cpu",
+      "custom/gpu",
+      "memory",
+      "network"
+    ],
+    "modules-center": [
+      "hyprland/workspaces",
+      "custom/privacydots",
+      "custom/update",
+      "custom/screenrecording-indicator"
+    ],
+    "modules-right": [
+      "group/tray-expander",
+      "custom/cava-player",
+      "bluetooth",
+      "pulseaudio",
+      "battery",
+      "clock"
+    ],
+    "custom/gpu": {
+      "format": "{icon}  {text}",
+      "exec": "gpu-usage-waybar",
+      "return-type": "json",
+      "format-icons": "󰍹",
+      "on-click": "omarchy-launch-or-focus-tui btop"
+    },
+    "custom/update": {
+      "format": "",
+      "exec": "omarchy-update-available",
+      "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+      "tooltip-format": "Omarchy update available",
+      "signal": 7,
+      "interval": 21600
+    },
+    "cpu": {
+      "interval": 3,
+      "format": "󰍛 {usage}%",
+      "on-click": "omarchy-launch-or-focus-tui btop"
+    },
+    "memory": {
+      "interval": 3,
+      "format": " {used:0.1f}/{total:0.0f}GB",
+      "on-click": "omarchy-launch-or-focus-tui btop"
+    },
+    "clock": {
+      "format": " {:%I:%M %p}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+        "mode" : "month",
+        "mode-mon-col" : 3,
+        "weeks-pos" : "right",
+        "on-scroll" : 1,
+        "format": {
+          "months": "<span color='#ffead3'><b>{}</b></span>",
+          "days": "<span color='#afbade'><b>{}</b></span>",
+          "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+          "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+          "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+        }
+      },
+      "actions": {
+        "on-click-right": "mode",
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down"
+      }
+    },
+    "network": {
+      "format-icons": [
+        "󰤯",
+        "󰤟",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+      ],
+      "format": "{icon} {bandwidthTotalBits}",
+      "format-wifi": "{icon} {bandwidthTotalBits}",
+      "format-ethernet": "󰀂",
+      "format-disconnected": "󰤮",
+      "tooltip-format-wifi": "{essid} ({frequency} GHz)",
+      "tooltip-format-ethernet": "Connected",
+      "tooltip-format-disconnected": "Disconnected",
+      "interval": 3,
+      "spacing": 1,
+      "on-click": "omarchy-launch-wifi"
+    },
+    "bluetooth": {
+      "format": "",
+      "format-off": "󰂲",
+      "format-disabled": "󰂲",
+      "format-connected": "󰂱",
+      "format-no-controller": "",
+      "tooltip-format": "Devices connected: {num_connections}",
+      "on-click": "omarchy-launch-bluetooth"
+    },
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "on-click": "pamixer -t",
+      "on-click-right": "omarchy-launch-audio",
+      "tooltip-format": "{desc}",
+      "scroll-step": 1,
+      "max-volume": 130,
+      "format-icons": {
+        "alsa_output.usb-C-Media_Electronics_Inc._USB_Audio_Device-00.analog-stereo": "\udb80\udecb",
+        "alsa_output.usb-C-Media_Electronics_Inc._USB_Audio_Device-00.analog-stereo-muted": "\udb81\udfce",
+        "headphone": "\udb80\udecb",
+        "headphone-muted": "\udb81\udfce",
+        "headset": "\udb80\udecb",
+        "headset-muted": "\udb81\udfce",
+        "default": [
+          "",
+          "",
+          " "
+        ],
+        "default-muted": ""
+      },
+      "states": {
+        "overdriven": 100
+      }
+    },
+    "battery": {
+      "format": "{icon} {capacity}%",
+      "format-discharging": "{icon} {capacity}%",
+      "format-charging": "{icon} {capacity}%",
+      "format-plugged": "",
+      "format-icons": {
+        "charging": [
+          "󰢜",
+          "󰂆",
+          "󰂇",
+          "󰂈",
+          "󰢝",
+          "󰂉",
+          "󰢞",
+          "󰂊",
+          "󰂋",
+          "󰂅"
+        ],
+        "default": [
+          "󰁺",
+          "󰁻",
+          "󰁼",
+          "󰁽",
+          "󰁾",
+          "󰁿",
+          "󰂀",
+          "󰂁",
+          "󰂂",
+          "󰁹"
+        ]
+      },
+      "format-full": "󰂅",
+      "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+      "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+      "interval": 5,
+      "on-click": "omarchy-menu power",
+      "states": {
+        "warning": 20,
+        "critical": 10
+      }
+    },
+    "group/tray-expander": {
+      "orientation": "inherit",
+      "drawer": {
+        "transition-duration": 600,
+        "children-class": "tray-group-item"
+      },
+      "modules": [
+        "custom/expand-icon",
+        "tray"
+      ]
+    },
+    "custom/expand-icon": {
+      "format": "",
+      "tooltip": false,
+      "on-scroll-up": "",
+      "on-scroll-down": "",
+      "on-scroll-left": "",
+      "on-scroll-right": ""
+    },
+    "custom/screenrecording-indicator": {
+      "on-click": "omarchy-cmd-screenrecord",
+      "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
+      "signal": 8,
+      "return-type": "json"
+    },
+    "custom/privacydots": {
+      "exec": "~/.config/waybar/scripts/privacydots.sh",
+      "return-type": "json",
+      "interval": 3,
+      "format": "{text}",
+      "tooltip": true,
+      "escape": false,
+      "markup": "pango"
+    },
+    "custom/cava-player": {
+      "format": "{}",
+      "exec": "~/.config/waybar/scripts/playerinfo.sh",
+      "return-type": "json",
+      "escape": true,
+      "tooltip": true,
+      "interval": 2,
+      "on-click": "playerctl play-pause"
+    },
+    "tray": {
+      "icon-size": 12,
+      "spacing": 17
+    }
+  },
+  // Cava overlay
+  {
+    "reload_style_on_change": true,
+    "name": "cava-overlay",
+    "layer": "top",
+    "exclusive": false,
+    "passthrough": true,
+    "height": 26,
+    "margin-top": -26,
+    "modules-right": [
+      "custom/cava"
+    ],
+    "custom/cava": {
+      "format": "{}",
+      "exec": "~/.config/waybar/scripts/cava.sh",
+      "tooltip": false
+    }
+  }
+]

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+VID_PATH=$(pgrep -a mpvpaper | head -n 1 | awk '{print $NF}')
+
+if [ -n "$VID_PATH" ] && [ -f "$VID_PATH" ]; then
+    echo "$VID_PATH" > /tmp/gamemode_bg_vid
+
+    FILENAME=$(basename "$VID_PATH")
+    THUMB_PATH="$HOME/.cache/omarchy-custom/live_thumbs/${FILENAME%.*}.jpg"
+
+    if [ -f "$THUMB_PATH" ]; then
+        swaybg -i "$THUMB_PATH" -m fill &
+        disown
+    fi
+
+    pkill mpvpaper
+fi

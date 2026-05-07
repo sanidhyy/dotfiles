@@ -1,0 +1,136 @@
+@import "../omarchy/current/theme/waybar.css";
+
+@define-color background rgba(1, 1, 1, 0.8);
+@define-color foreground #afbade;
+
+* {
+  color: @foreground;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+window#waybar {
+  background-color: @background;
+}
+
+window.cava-overlay#waybar {
+  background-color: transparent;
+}
+
+#waybar {
+  border: 1.5px solid alpha(@foreground, 0.3);
+}
+
+.cava-overlay#waybar {
+  border: none;
+}
+
+#waybar,
+.cava-overlay#waybar {
+  border-radius: 6px;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
+  opacity: 0.8;
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
+}
+
+#workspaces button.active {
+  opacity: 1;
+}
+
+#workspaces button.active label {
+  color: #89b4fa;
+  text-shadow:
+    -1px 0 #f5c2e7,
+    1px 0 #89b4fa,
+    -1px 0 1px rgba(137, 180, 250, 0.4),
+    0px 0 1px rgba(203, 166, 247, 0.3),
+    1px 0 1px rgba(245, 194, 231, 0.4);
+}
+
+#cpu,
+#memory,
+#custom-gpu,
+#battery,
+#bluetooth,
+#clock,
+#network,
+#pulseaudio.overdriven,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#pulseaudio {
+  margin: 0 4px;
+}
+
+#cpu {
+  margin-left: 4px;
+}
+
+#tray {
+  margin-right: 16px;
+}
+
+tooltip {
+  padding: 2px;
+  border: 1.5px solid alpha(@foreground, 0.3);
+  border-radius: 6px;
+}
+
+#custom-update {
+  font-size: 10px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#custom-screenrecording-indicator,
+#custom-privacydots {
+  min-width: 12px;
+  margin-left: 5px;
+  margin-right: 0;
+  font-size: 10px;
+  padding-bottom: 1px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
+
+#custom-expand-icon {
+  font-size: 10px;
+  margin-right: 20px;
+}
+
+#custom-cava {
+  margin-right: 230px;
+  font-size: 9px;
+  margin-bottom: 4px;
+}
+
+#custom-cava-player {
+  color: transparent;
+  background: transparent;
+}

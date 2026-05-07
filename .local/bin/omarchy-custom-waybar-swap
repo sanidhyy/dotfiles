@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Usage: ~/.local/bin/omarchy-custom-waybar-swap [single|dual]
+
+MODE="$1"
+
+if [[ "$MODE" == "single" || "$MODE" == "dual" ]]; then
+    ln -nsf "$HOME/.config/waybar/workspaces-${MODE}.jsonc" "$HOME/.config/waybar/workspaces-active.jsonc"
+    omarchy-restart-waybar
+else
+    echo "Invalid mode. Use 'single' or 'dual'."
+    exit 1
+fi
+

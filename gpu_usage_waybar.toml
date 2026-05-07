@@ -1,0 +1,21 @@
+# Config file for the `gpu-usage-waybar` tool
+
+[general]
+interval = 3000
+
+[text]
+format = "{mem_utilization}%"
+
+# [tooltip]
+# format = """GPU: {gpu_utilization}%
+# MEM USED: {mem_used:MiB.0}/{mem_total:MiB} MiB ({mem_utilization}%)
+# MEM R/W: {mem_rw}%
+# DEC: {decoder_utilization}%
+# ENC: {encoder_utilization}%
+# TEMP: {temperature:c}°C
+# POWER: {power:w}W
+# PSTATE: {p_state}
+# PLEVEL: {p_level}
+# FAN SPEED: {fan_speed}%
+# TX: {tx:MiB.3} MiB/s
+# RX: {rx:MiB.3} MiB/s"""

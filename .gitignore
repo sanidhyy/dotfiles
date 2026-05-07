@@ -1,0 +1,23 @@
+# secrets / runtime
+.env*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*.kdbx
+.ssh/
+.gnupg/
+rclone.conf
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.cursor/
+*.swp
+
+# local state
+.cache/
+*.log
