@@ -200,9 +200,9 @@
       "return-type": "json"
     },
     "custom/privacydots": {
-      "exec": "~/.config/waybar/scripts/privacydots.sh",
+      "exec": "cat \"${XDG_CACHE_HOME:-$HOME/.cache}/waybar-privacydots.json\" 2>/dev/null || ~/.config/waybar/scripts/privacydots.sh",
       "return-type": "json",
-      "interval": 3,
+      "interval": 1,
       "format": "{text}",
       "tooltip": true,
       "escape": false,

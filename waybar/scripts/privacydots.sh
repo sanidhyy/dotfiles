@@ -18,15 +18,21 @@ if command -v "$PW_DUMP_CMD" >/dev/null 2>&1 && command -v "$JQ_BIN" >/dev/null 
   mic="$(
     printf '%s' "$dump" \
     | $JQ_BIN -r '
-      [ .[] 
-        | select(.type=="PipeWire:Interface:Node")
-        | select((.info.props."media.class"=="Audio/Source" or .info.props."media.class"=="Audio/Source/Virtual"))
+      any(
+        .[];
+        select(.type=="PipeWire:Interface:Node")
+        | select((.info.props."media.class"=="Audio/Source") or (.info.props."media.class"=="Audio/Source/Virtual"))
         | select((.info.state=="running") or (.state=="running"))
-      ] | (if length>0 then 1 else 0 end)
+      )
+      | if . then 1 else 0 end
     ' 2>/dev/null || echo 0
   )"
 
-  cam="$(fuser -s /dev/video* 2>/dev/null && echo 1 || echo 0)"
+  if compgen -G "/dev/video*" >/dev/null; then
+    cam="$(fuser -s /dev/video* 2>/dev/null && echo 1 || echo 0)"
+  else
+    cam=0
+  fi
 fi
 
 # Colors
