@@ -105,7 +105,7 @@ function GetEntries()
 
             if not FileExists(preview_path) then
               os.execute("mkdir -p " .. ShellEscape(cache_dir))
-              os.execute("ffmpeg -i " .. ShellEscape(background) .. " -vframes 1 -q:v 2 " .. ShellEscape(preview_path) .. " -loglevel error")
+              os.execute("ffmpegthumbnailer -i " .. ShellEscape(background) .. " -o " .. ShellEscape(preview_path) .. " -s 320 -q 8")
             end
           end
 

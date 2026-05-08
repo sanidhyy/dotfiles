@@ -30,7 +30,7 @@ if [[ "$extension" =~ $EXT_PATTERN ]]; then
   STATIC_THUMB="$CACHE_DIR/${filename%.*}.jpg"
 
   if [[ ! -f "$STATIC_THUMB" ]]; then
-    ffmpeg -i "$TARGET_FILE" -vframes 1 -q:v 2 "$STATIC_THUMB" -loglevel error
+    ffmpegthumbnailer -i "$TARGET_FILE" -o "$STATIC_THUMB" -s 320 -q 8 2>/dev/null
   fi
 
   ln -nsf "$STATIC_THUMB" "$HOME/.config/omarchy/current/background"
