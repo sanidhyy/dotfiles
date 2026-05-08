@@ -23,7 +23,7 @@ services:
       - 127.0.0.1:3389:3389/tcp
       - 127.0.0.1:3389:3389/udp
     volumes:
-      - /home/sanidhyy/.windows:/storage
-      - /home/sanidhyy/Windows:/shared
+      - ${HOME}/.windows:/storage
+      - ${HOME}/Windows:/shared
     restart: unless-stopped
     stop_grace_period: 2m

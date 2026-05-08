@@ -17,7 +17,7 @@ alias speedtest='SpeedTest'
 export REACT_EDITOR=cursor
 
 # pnpm
-export PNPM_HOME="/home/sanidhyy/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
