@@ -23,8 +23,7 @@ if [[ -f "$BG_FILE" ]]; then
   EXT_PATTERN="^($(paste -sd '|' "$EXT_FILE"))$"
 
   if [[ "$extension" =~ $EXT_PATTERN ]]; then
-    sed -e '/^background {/,/}/s/^[[:space:]]*path = .*/    # path removed/' \
-        -e '/^background {/,/}/s/^[[:space:]]*color = .*/    color = rgba(0, 0, 0, 0)/' \
+    sed -e '/^[[:space:]]*#[[:space:]]*OMARCHY_CUSTOM_LOCK_VIDEO_BEGIN[[:space:]]*$/,/^[[:space:]]*#[[:space:]]*OMARCHY_CUSTOM_LOCK_VIDEO_END[[:space:]]*$/ { s/^[[:space:]]*path[[:space:]]*=.*/    # path removed (video wallpaper lock)/; s/^[[:space:]]*color[[:space:]]*=.*/    color = rgba(0, 0, 0, 0)/; }' \
         "$HYPRLOCK_CONF" > "$HYPRLOCK_TEMP_CONF"
     
     ~/.local/bin/bg-pause

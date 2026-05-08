@@ -2,10 +2,4 @@
 
 # This hook is called after an Omarchy system update has been performed.
 
-ln -nsf "$HOME/.config/omarchy-custom/ui/omarchy_background_selector.lua" "$HOME/.local/share/omarchy/default/elephant/omarchy_background_selector.lua"
-
-ln -nsf "$HOME/.local/bin/omarchy-custom-lock-screen" "$HOME/.local/share/omarchy/bin/omarchy-lock-screen"
-
-ln -nsf "$HOME/.local/bin/omarchy-hyprland-toggle" "$HOME/.local/share/omarchy/bin/omarchy-hyprland-toggle"
-
 omarchy-restart-walker
