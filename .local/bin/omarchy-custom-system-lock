@@ -31,11 +31,11 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
-hyprctl switchxkblayout all 0 > /dev/null 2>&1
+hyprctl switchxkblayout all 0 >/dev/null 2>&1 || true
 if pgrep -x "1password" >/dev/null; then
   1password --lock &
 fi
-pkill -f org.omarchy.screensaver
+pkill -f org.omarchy.screensaver >/dev/null 2>&1 || true
 
 BG_FILE="$HOME/.cache/omarchy-custom/background.file"
 EXT_FILE="$HOME/.config/omarchy-custom/constants/video_exts.list"
