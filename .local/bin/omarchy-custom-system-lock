@@ -1,8 +1,30 @@
 #!/bin/bash
 
+set -euo pipefail
+
 if pidof hyprlock > /dev/null; then
   exit 0
 fi
+
+MPV_PID=""
+BG_PAUSED=0
+BG_SNIPPET_SWAPPED=0
+cleanup() {
+  set +e
+
+  if [[ -n "${MPV_PID:-}" ]] && kill -0 "$MPV_PID" >/dev/null 2>&1; then
+    kill "$MPV_PID" >/dev/null 2>&1 || true
+  fi
+
+  if [[ "${BG_SNIPPET_SWAPPED:-0}" -eq 1 ]]; then
+    ln -nsf "$HYPRLOCK_BG_NORMAL" "$HYPRLOCK_BG_ACTIVE" >/dev/null 2>&1 || true
+  fi
+
+  if [[ "${BG_PAUSED:-0}" -eq 1 ]]; then
+    "$HOME/.local/bin/bg-resume" >/dev/null 2>&1 || true
+  fi
+}
+trap cleanup EXIT INT TERM
 
 hyprctl switchxkblayout all 0 > /dev/null 2>&1
 if pgrep -x "1password" >/dev/null; then
@@ -13,7 +35,9 @@ pkill -f org.omarchy.screensaver
 BG_FILE="$HOME/.cache/omarchy-custom/background.file"
 EXT_FILE="$HOME/.config/omarchy-custom/constants/video_exts.list"
 HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
-HYPRLOCK_TEMP_CONF="/tmp/hyprlock-video-${USER}.conf"
+HYPRLOCK_BG_ACTIVE="$HOME/.config/hypr/hyprlock-background-active.conf"
+HYPRLOCK_BG_NORMAL="$HOME/.config/hypr/hyprlock-background-normal.conf"
+HYPRLOCK_BG_VIDEO="$HOME/.config/hypr/hyprlock-background-video.conf"
 
 # Video
 if [[ -f "$BG_FILE" ]]; then
@@ -23,10 +47,11 @@ if [[ -f "$BG_FILE" ]]; then
   EXT_PATTERN="^($(paste -sd '|' "$EXT_FILE"))$"
 
   if [[ "$extension" =~ $EXT_PATTERN ]]; then
-    sed -e '/^[[:space:]]*#[[:space:]]*OMARCHY_CUSTOM_LOCK_VIDEO_BEGIN[[:space:]]*$/,/^[[:space:]]*#[[:space:]]*OMARCHY_CUSTOM_LOCK_VIDEO_END[[:space:]]*$/ { s/^[[:space:]]*path[[:space:]]*=.*/    # path removed (video wallpaper lock)/; s/^[[:space:]]*color[[:space:]]*=.*/    color = rgba(0, 0, 0, 0)/; }' \
-        "$HYPRLOCK_CONF" > "$HYPRLOCK_TEMP_CONF"
-    
-    ~/.local/bin/bg-pause
+    ln -nsf "$HYPRLOCK_BG_VIDEO" "$HYPRLOCK_BG_ACTIVE"
+    BG_SNIPPET_SWAPPED=1
+
+    "$HOME/.local/bin/bg-pause"
+    BG_PAUSED=1
 
     mpvpaper -o "loop no-audio hwdec=auto keepaspect=no" -l overlay '*' "$BG" >/dev/null 2>&1 &
 
@@ -34,11 +59,7 @@ if [[ -f "$BG_FILE" ]]; then
 
     MPV_PID=$!
 
-    hyprlock --config "$HYPRLOCK_TEMP_CONF"
-
-    kill $MPV_PID
-    ~/.local/bin/bg-resume
-
+    hyprlock
     exit 0
   fi
 fi
