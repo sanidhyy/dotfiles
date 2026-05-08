@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Toggle the external monitor on/off in Hyprland.
+# Also switches Waybar layout (single/dual) and restores background selection.
+# Dependencies: hyprctl, notify-send, omarchy-custom-waybar-swap, omarchy-custom-theme-bg-restore.
+
 source ~/.config/omarchy-custom/constants/monitors.env
 
 # Extract the connection type (e.g., HDMI, DP) from the monitor variable

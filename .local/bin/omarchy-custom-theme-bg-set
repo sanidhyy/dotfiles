@@ -1,6 +1,17 @@
 #!/bin/bash
 
+# Set Omarchy theme background to an image/video path (supports mpvpaper for video).
+# Writes selected path to cache and updates current background thumbnail/symlink.
+# Usage: omarchy-custom-theme-bg-set <path-to-image-or-video>
+# Example: omarchy-custom-theme-bg-set "$HOME/Pictures/wallpaper.mp4"
+
 TARGET_FILE="$1"
+
+if [[ $# -lt 1 || -z "${TARGET_FILE:-}" ]]; then
+  echo "Usage: omarchy-custom-theme-bg-set <path-to-image-or-video>"
+  echo "Example: omarchy-custom-theme-bg-set \"$HOME/Pictures/wallpaper.mp4\""
+  exit 2
+fi
 
 if [[ ! -f "$TARGET_FILE" ]]; then
   echo "Target file not found: $TARGET_FILE"

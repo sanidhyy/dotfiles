@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# Usage: ~/.local/bin/omarchy-custom-waybar-swap [single|dual]
+# Switch Waybar workspace layout between single/dual monitor modes.
+# Creates/updates the `workspaces-active.jsonc` symlink and restarts Waybar.
+# Usage: omarchy-custom-waybar-swap <single|dual>
+# Example: omarchy-custom-waybar-swap dual
 
 MODE="$1"
 
@@ -8,7 +11,8 @@ if [[ "$MODE" == "single" || "$MODE" == "dual" ]]; then
     ln -nsf "$HOME/.config/waybar/workspaces-${MODE}.jsonc" "$HOME/.config/waybar/workspaces-active.jsonc"
     omarchy-restart-waybar
 else
-    echo "Invalid mode. Use 'single' or 'dual'."
+    echo "Usage: omarchy-custom-waybar-swap <single|dual>"
+    echo "Example: omarchy-custom-waybar-swap dual"
     exit 1
 fi
 

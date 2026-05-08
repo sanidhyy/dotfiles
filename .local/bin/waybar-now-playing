@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Output now-playing metadata as JSON for Waybar/Hyprlock.
+# Prints nothing when nothing is playing.
+# Dependencies: playerctl, jq.
+
 # --- CONFIGURATION ---
 # Maximum length for the song title before it gets truncated with "..."
 MAX_LENGTH=40

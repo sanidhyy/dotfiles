@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Unmount a FUSE-mounted Drive directory (rclone mount).
+# Prefers fusermount3 and falls back to fusermount; exits 0 if not mounted.
+# Usage: rclone-unmount-drive [mount-path]
+# Example: rclone-unmount-drive "$HOME/Drive"
+
 set -euo pipefail
 
 target="${1:-$HOME/Drive}"

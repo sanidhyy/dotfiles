@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Pause video wallpaper (mpvpaper) and set a static thumbnail.
+# Used by Gamemode and lock-screen flows to avoid GPU usage spikes.
+# Dependencies: mpvpaper, swaybg, pgrep, awk.
+
 VID_PATH=$(pgrep -a mpvpaper | head -n 1 | awk '{print $NF}')
 
 if [ -n "$VID_PATH" ] && [ -f "$VID_PATH" ]; then

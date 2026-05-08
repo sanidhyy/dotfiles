@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# privacy dots for Waybar 
-# mic:  green, cam: orange
+# Privacy dots for Waybar (mic + camera indicators).
+# Prints JSON for Waybar; returns empty when nothing is active.
+# Dependencies: pipewire (pw-dump), jq, fuser.
 
 set -euo pipefail
 

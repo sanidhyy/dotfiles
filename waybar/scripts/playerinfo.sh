@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Waybar module helper: outputs JSON tooltip with current track (artist - title).
+# Prints a blank text placeholder to preserve spacing.
+# Dependencies: playerctl, jq.
+
 # Check if playerctl can find an active player
 if playerctl status >/dev/null 2>&1; then
     # A player is active, grab the metadata

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Event-driven privacydots cache updater for Waybar.
+# Writes JSON to ~/.cache/waybar-privacydots.json and signals Waybar to refresh.
+# Dependencies: pw-cli (optional), pkill, privacydots.sh.
+
 set -euo pipefail
 
 CACHE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/waybar-privacydots.json"

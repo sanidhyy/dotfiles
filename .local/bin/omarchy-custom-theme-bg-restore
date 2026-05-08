@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Restore the last selected Omarchy background (after monitor/layout changes).
+# Forces a Hyprland layout recalculation, then re-applies cached background.
+# Dependencies: hyprctl, omarchy-custom-theme-bg-set.
+
 # Force Hyprland to fix squished window layouts
 hyprctl dispatch layoutmsg recalculate >/dev/null 2>&1
 

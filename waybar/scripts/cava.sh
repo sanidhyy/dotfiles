@@ -1,5 +1,9 @@
 #! /bin/bash
 
+# Render a small audio visualizer for Waybar using CAVA.
+# Prints bar characters to stdout continuously.
+# Dependencies: cava, sed.
+
 bar="▁▂▃▄▅▆▇█"
 dict="s/;//g;"
 

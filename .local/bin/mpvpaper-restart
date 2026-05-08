@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Restart mpvpaper (video wallpaper) if it is running.
+# Skips if Hyprlock is active or Gamemode is active.
+# Dependencies: gamemoded, pgrep/pkill, omarchy-custom-theme-bg-set.
+
 if pidof hyprlock > /dev/null; then
   exit 0
 fi
