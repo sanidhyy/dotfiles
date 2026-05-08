@@ -1,9 +1,9 @@
 [Unit]
-Description=Timer to restart mpvpaper every 30 minutes
+Description=Timer to restart mpvpaper every 1.5 hours
 
 [Timer]
-OnBootSec=30min
-OnUnitActiveSec=30min
+OnBootSec=90min
+OnUnitActiveSec=90min
 
 [Install]
 WantedBy=timers.target
