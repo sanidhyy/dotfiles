@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+target="${1:-$HOME/Drive}"
+
+if command -v mountpoint >/dev/null 2>&1; then
+  mountpoint -q "$target" || exit 0
+fi
+
+if command -v fusermount3 >/dev/null 2>&1; then
+  fusermount3 -u "$target"
+else
+  fusermount -u "$target"
+fi
+

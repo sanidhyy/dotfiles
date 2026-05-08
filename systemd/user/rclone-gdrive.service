@@ -11,17 +11,8 @@ ExecStart=/usr/bin/rclone mount gdrive: %h/Drive \
 --vfs-cache-max-size 10G \
 --vfs-cache-max-age 24h \
 --systemd
-ExecStop=/usr/bin/env bash -lc '\
-  set -e; \
-  target=%h/Drive; \
-  mountpoint -q "$target" || exit 0; \
-  if command -v fusermount3 >/dev/null 2>&1; then fusermount3 -u "$target"; else fusermount -u "$target"; fi \
-'
-ExecStopPost=/usr/bin/env bash -lc '\
-  set +e; \
-  target=%h/Drive; \
-  mountpoint -q "$target" && umount "$target" 2>/dev/null || true \
-'
+ExecStop=%h/.local/bin/rclone-unmount-drive %h/Drive
+ExecStopPost=/usr/bin/env bash -lc 'mountpoint -q %h/Drive && umount %h/Drive 2>/dev/null || true'
 Restart=always
 RestartSec=10
 
