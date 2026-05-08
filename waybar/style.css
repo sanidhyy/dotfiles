@@ -59,11 +59,8 @@ window.cava-overlay#waybar {
 
 #workspaces button.active label {
   color: #89b4fa;
-  text-shadow:
-    -1px 0 #f5c2e7,
-    1px 0 #89b4fa,
-    -1px 0 1px rgba(137, 180, 250, 0.4),
-    0px 0 1px rgba(203, 166, 247, 0.3),
+  text-shadow: -1px 0 #f5c2e7, 1px 0 #89b4fa,
+    -1px 0 1px rgba(137, 180, 250, 0.4), 0px 0 1px rgba(203, 166, 247, 0.3),
     1px 0 1px rgba(245, 194, 231, 0.4);
 }
 
@@ -109,9 +106,9 @@ tooltip {
 #custom-screenrecording-indicator,
 #custom-privacydots {
   min-width: 12px;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-right: 0;
-  font-size: 10px;
+  font-size: 12px;
   padding-bottom: 1px;
 }
 

@@ -42,8 +42,8 @@ orange="#FF9F0A"  # cam
 
 # build text string
 text=""
-[[ $mic -eq 1 ]] && text+="<span foreground=\"$green\">󰍬</span> "
-[[ $cam -eq 1 ]] && text+="<span foreground=\"$orange\"></span> "
+[[ $mic -eq 1 ]] && text+="<span foreground=\"$green\" size=\"larger\">󰍬</span> "
+[[ $cam -eq 1 ]] && text+="<span foreground=\"$orange\" size=\"larger\"></span> "
 text="${text% }"
 tooltip="Mic: $([[ $mic -eq 1 ]] && echo on || echo off) | Cam: $([[ $cam -eq 1 ]] && echo on || echo off)"
 
