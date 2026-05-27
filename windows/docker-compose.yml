@@ -10,12 +10,11 @@ services:
       USERNAME: ""
       PASSWORD: ""
       TZ: "Asia/Kolkata"
-      ARGUMENTS: "-rtc base=localtime,clock=host,driftfix=slew -device usb-host,vendorid=0x340e,productid=0x8002"
+      ARGUMENTS: "-rtc base=localtime,clock=host,driftfix=slew"
     privileged: true
     devices:
       - /dev/kvm
       - /dev/net/tun
-      - /dev/bus/usb/001/004
     cap_add:
       - NET_ADMIN
     ports:
