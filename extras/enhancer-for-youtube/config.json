@@ -1,5 +1,5 @@
 {
-  "version": "3.0.16",
+  "version": "3.0.17",
   "settings": {
     "applyvideofilters": false,
     "backdropcolor": "#000000",
@@ -18,6 +18,7 @@
       "position": "absolute"
     },
     "controls": [
+      "loop",
       "reverse-playlist",
       "cards-end-screens",
       "cinema-mode",
@@ -32,12 +33,12 @@
     "controlvolumemousebutton": false,
     "convertshorts": false,
     "customcolors": {
-      "--main-color": "#ff0033",
-      "--main-background": "#111111",
-      "--second-background": "#181818",
-      "--hover-background": "#232323",
-      "--main-text": "#eff0f1",
       "--dimmer-text": "#cccccc",
+      "--hover-background": "#232323",
+      "--main-background": "#111111",
+      "--main-color": "#ff0033",
+      "--main-text": "#eff0f1",
+      "--second-background": "#181818",
       "--shadow": "#000000"
     },
     "customcss": ":root {\n  --main-color: #89dceb;\n  --main-background: #0f141e;\n  --second-background: #181c30;\n  --hover-background: #313648;\n  --main-text: #cdd6f4;\n  --dimmer-text: #9399b2;\n  --shadow: 0 1px 0.5px rgba(15, 20, 30, 0.5);\n}\n\n.yt-icon > div > svg > g:first-child > path:last-child {\n  fill: var(--second-background) !important;\n}\n\n.yt-spec-icon-badge-shape__badge,\nbutton.yt-icon-button:hover\n  .yt-spec-icon-badge-shape--type-notification\n  .yt-spec-icon-badge-shape__badge {\n  color: var(--second-background) !important;\n}\n\n.ytp-settings-button.ytp-hd-quality-badge::after,\n.ytp-settings-button.ytp-4k-quality-badge::after,\n.ytp-settings-button.ytp-5k-quality-badge::after,\n.ytp-settings-button.ytp-8k-quality-badge::after,\n.ytp-settings-button.ytp-3d-badge::after {\n  background-color: var(--hover-background) !important;\n}\n",
@@ -106,7 +107,7 @@
     "speed": 1,
     "speedvariation": 0.02,
     "stopvideos": false,
-    "theatermode": false,
+    "theatermode": true,
     "theme": "default-dark",
     "themevariant": "dark-blue-violet.css",
     "update": 1771042059616,
@@ -116,16 +117,16 @@
       "brightness": 100,
       "contrast": 100,
       "grayscale": 0,
-      "rotation": 0,
       "inversion": 0,
+      "rotation": 0,
       "saturation": 100,
       "sepia": 0
     },
-    "volume": 85,
+    "volume": 100,
     "volumemultiplier": 2,
     "volumevariation": 5,
     "whatsnew": false,
-    "wideplayer": true,
-    "wideplayerviewport": true
+    "wideplayer": false,
+    "wideplayerviewport": false
   }
 }
