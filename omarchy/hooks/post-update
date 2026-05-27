@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# This hook is called after an Omarchy system update has been performed.
-
-omarchy-restart-walker
