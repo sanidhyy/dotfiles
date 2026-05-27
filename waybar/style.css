@@ -1,15 +1,14 @@
 @import "../omarchy/current/theme/waybar.css";
-
-@define-color background rgba(1, 1, 1, 0.8);
-@define-color foreground #afbade;
+@import "mocha.css";
 
 * {
-  color: @foreground;
+  color: @text;
   border: none;
   border-radius: 0;
   min-height: 0;
   font-family: "JetBrainsMono Nerd Font";
   font-size: 12px;
+  font-weight: 700;
 }
 
 window#waybar {
@@ -20,25 +19,8 @@ window.cava-overlay#waybar {
   background-color: transparent;
 }
 
-#waybar {
-  border: 1.5px solid alpha(@foreground, 0.3);
-}
-
 .cava-overlay#waybar {
   border: none;
-}
-
-#waybar,
-.cava-overlay#waybar {
-  border-radius: 6px;
-}
-
-.modules-left {
-  margin-left: 8px;
-}
-
-.modules-right {
-  margin-right: 8px;
 }
 
 #workspaces button {
@@ -58,10 +40,12 @@ window.cava-overlay#waybar {
 }
 
 #workspaces button.active label {
-  color: #89b4fa;
-  text-shadow: -1px 0 #f5c2e7, 1px 0 #89b4fa,
-    -1px 0 1px rgba(137, 180, 250, 0.4), 0px 0 1px rgba(203, 166, 247, 0.3),
-    1px 0 1px rgba(245, 194, 231, 0.4);
+  color: @blue;
+  font-size: 14px;
+}
+
+.modules-left {
+  margin-left: 8px;
 }
 
 #cpu,
@@ -69,20 +53,24 @@ window.cava-overlay#waybar {
 #custom-gpu,
 #battery,
 #bluetooth,
-#clock,
 #network,
 #pulseaudio.overdriven,
-#custom-update {
+#custom-update,
+#custom-weather {
   min-width: 12px;
   margin: 0 7.5px;
 }
 
-#pulseaudio {
-  margin: 0 4px;
+#network {
+  margin-left: 2px;
 }
 
-#cpu {
-  margin-left: 4px;
+#battery {
+  margin-right: 12px;
+}
+
+#pulseaudio {
+  margin: 0 4px;
 }
 
 #tray {
@@ -91,8 +79,8 @@ window.cava-overlay#waybar {
 
 tooltip {
   padding: 2px;
-  border: 1.5px solid alpha(@foreground, 0.3);
-  border-radius: 6px;
+  background-color: alpha(@background, 0.95);
+  border-radius: 10px;
 }
 
 #custom-update {
@@ -118,16 +106,28 @@ tooltip {
 
 #custom-expand-icon {
   font-size: 10px;
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 #custom-cava {
-  margin-right: 230px;
-  font-size: 9px;
-  margin-bottom: 4px;
+  margin-right: 218px;
+  font-size: 12px;
+  margin-bottom: 6px;
 }
 
 #custom-cava-player {
   color: transparent;
   background: transparent;
+}
+
+#custom-weather.unavailable {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#clock {
+  background-color: @blue;
+  color: @crust;
+  padding: 0 14px;
 }
