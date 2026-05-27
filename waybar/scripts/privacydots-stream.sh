@@ -25,4 +25,3 @@ while true; do
 
   sleep "$POLL_SEC"
 done
-

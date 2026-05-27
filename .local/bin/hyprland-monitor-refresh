@@ -30,4 +30,3 @@ fi
 socat -U - "UNIX-CONNECT:$SOCKET" | while read -r event; do
   handle "$event"
 done
-

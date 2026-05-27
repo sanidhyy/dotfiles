@@ -27,6 +27,6 @@ jq -n --compact-output \
   --arg album "$album" \
   --argjson max_len "$MAX_LENGTH" \
   '{
-     text: (" " + (if ($title | length) > $max_len then ($title[0:$max_len-3] + "...") else $title end | @html)),
+     text: (" " + (if ($title | length) > $max_len then ($title[0:$max_len-3] + "...") else $title end | @html)),
      tooltip: ("<span alpha=\"72%\">󰠃 Artist</span>   <span alpha=\"96%\">" + ($artist | @html) + "</span>\n<span alpha=\"72%\">󰀥 Album</span>    <span alpha=\"96%\">" + ($album | @html) + "</span>\n<span alpha=\"72%\"> Song</span>     <span alpha=\"96%\">" + ($title | @html) + "</span>")
    }'

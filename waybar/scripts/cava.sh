@@ -1,22 +1,33 @@
 #! /bin/bash
 
-# Render a small audio visualizer for Waybar using CAVA.
-# Prints bar characters to stdout continuously.
+# Render a small audio visualizer for Waybar using CAVA (with Catppuccin Mocha colors).
+# Prints bar characters with Pango markup to stdout continuously.
 # Dependencies: cava, sed.
 
-bar="▁▂▃▄▅▆▇█"
-dict="s/;//g;"
+config_file="/tmp/waybar_cava_config"
 
-# creating "dictionary" to replace char with bar
-for ((i=0; i<${#bar}; i++)); do
-    dict="${dict}s/$i/${bar:$i:1}/g;"
+pkill -f "cava -p $config_file" 2>/dev/null || true
+
+bar="▁▂▃▄▅▆▇█"
+
+# Color palette (Catppuccin Mocha)
+colors=("#94e2d5" "#89dceb" "#74c7ec" "#89b4fa" "#cba6f7" "#f5c2e7" "#eba0ac" "#f38ba8")
+letters=("A" "B" "C" "D" "E" "F" "G" "H")
+
+dict="s/;//g;"
+dict_step1=""
+dict_step2=""
+
+for ((i=0; i<8; i++)); do
+    dict_step1="${dict_step1}s/$i/${letters[$i]}/g;"
+    dict_step2="${dict_step2}s/${letters[$i]}/<span foreground='${colors[$i]}'>${bar:$i:1}<\/span>/g;"
 done
 
-# write cava config
-config_file="/tmp/waybar_cava_config"
+dict="${dict} ${dict_step1} ${dict_step2}"
+
 echo "
 [general]
-bars = 12
+bars = 8
 
 [output]
 method = raw

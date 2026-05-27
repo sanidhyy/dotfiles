@@ -7,6 +7,31 @@
 
 set -euo pipefail
 
+if [[ "${OMARCHY_LOCK_ONLY:-false}" != "true" ]]; then
+  (
+    for _ in {1..5}; do
+      pidof hyprlock >/dev/null && break
+      sleep 1
+    done
+
+    sleep 3
+    pkill -STOP -x mpvpaper >/dev/null 2>&1 || true
+
+    # TODO: KBD brightness (Work in progress)
+    omarchy-brightness-display off
+
+    # New polling loop to catch manual wakes
+    while pidof hyprlock >/dev/null; do
+      if hyprctl monitors | grep -q "dpmsStatus: 1"; then
+        ~/.local/bin/omarchy-custom-system-wake
+        break
+      fi
+
+      sleep 0.4
+    done
+  ) &
+fi
+
 if pidof hyprlock > /dev/null; then
   exit 0
 fi
@@ -14,6 +39,7 @@ fi
 MPV_PID=""
 BG_PAUSED=0
 BG_SNIPPET_SWAPPED=0
+
 cleanup() {
   set +e
 
@@ -28,6 +54,8 @@ cleanup() {
   if [[ "${BG_PAUSED:-0}" -eq 1 ]]; then
     "$HOME/.local/bin/bg-resume" >/dev/null 2>&1 || true
   fi
+
+  ~/.local/bin/omarchy-custom-system-wake
 }
 trap cleanup EXIT INT TERM
 
@@ -44,7 +72,6 @@ HYPRLOCK_BG_ACTIVE="$HOME/.config/hypr/hyprlock-background-active.conf"
 HYPRLOCK_BG_NORMAL="$HOME/.config/hypr/hyprlock-background-normal.conf"
 HYPRLOCK_BG_VIDEO="$HOME/.config/hypr/hyprlock-background-video.conf"
 
-# Video
 if [[ -f "$BG_FILE" ]]; then
   BG=$(cat "$BG_FILE")
   filename=$(basename "$BG")
@@ -59,9 +86,8 @@ if [[ -f "$BG_FILE" ]]; then
     BG_PAUSED=1
 
     mpvpaper -o "loop no-audio hwdec=auto keepaspect=no" -l overlay '*' "$BG" >/dev/null 2>&1 &
-
+    
     sleep 0.5
-
     MPV_PID=$!
 
     hyprlock
@@ -69,5 +95,4 @@ if [[ -f "$BG_FILE" ]]; then
   fi
 fi
 
-# Image
 hyprlock

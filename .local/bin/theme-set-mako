@@ -1,0 +1,16 @@
+#!/bin/bash
+
+TARGET_FILE="$HOME/.config/omarchy/current/theme/mako.ini"
+INDICATOR="# --- CUSTOM BORDER --- #"
+
+CUSTOM_CSS="
+$INDICATOR
+border-radius=8
+"
+
+if ! grep -q "$INDICATOR" "$TARGET_FILE" 2>/dev/null; then
+  echo -e "$CUSTOM_CSS" >> "$TARGET_FILE"
+fi
+
+# Restart mako
+omarchy restart mako

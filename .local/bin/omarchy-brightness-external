@@ -28,4 +28,3 @@ echo "$new_brightness" > "$cache_file"
 omarchy-swayosd-brightness "$new_brightness"
 
 ddcutil --display 1 --noverify --skip-ddc-checks --disable-dynamic-sleep --sleep-multiplier 0.1 --maxtries 1,1,1 setvcp 10 $new_brightness >/dev/null 2>&1 &
-

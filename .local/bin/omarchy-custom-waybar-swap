@@ -15,4 +15,3 @@ else
     echo "Example: omarchy-custom-waybar-swap dual"
     exit 1
 fi
-

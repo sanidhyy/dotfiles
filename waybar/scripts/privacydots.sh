@@ -37,8 +37,8 @@ if command -v "$PW_DUMP_CMD" >/dev/null 2>&1 && command -v "$JQ_BIN" >/dev/null 
 fi
 
 # Colors
-green="#30D158"   # mic
-orange="#FF9F0A"  # cam
+green="#a6e3a1"   # mic
+orange="#fab387"  # cam
 
 # build text string
 text=""
