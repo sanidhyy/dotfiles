@@ -2,7 +2,7 @@
   "version": 1,
   "groups": {
     "hypr": {
-      "label": "Hyprland",
+      "label": "Hyprland — window manager, keybinds, lock & idle",
       "default": true,
       "mappings": [
         { "src": "hypr/autostart.conf", "dst": "$HOME/.config/hypr/autostart.conf" },
@@ -17,7 +17,7 @@
       ]
     },
     "waybar": {
-      "label": "Waybar",
+      "label": "Waybar — status bar layout, styles & modules",
       "default": true,
       "mappings": [
         { "src": "waybar/config.jsonc", "dst": "$HOME/.config/waybar/config.jsonc" },
@@ -32,28 +32,28 @@
       ]
     },
     "kitty": {
-      "label": "Kitty",
+      "label": "Kitty — terminal colors and settings",
       "default": true,
       "mappings": [
         { "src": "kitty/kitty.conf", "dst": "$HOME/.config/kitty/kitty.conf" }
       ]
     },
     "starship": {
-      "label": "Starship",
+      "label": "Starship — shell prompt appearance",
       "default": true,
       "mappings": [
         { "src": "starship.toml", "dst": "$HOME/.config/starship.toml" }
       ]
     },
     "gtk": {
-      "label": "GTK",
+      "label": "GTK — application theme styling",
       "default": true,
       "mappings": [
         { "src": "gtk.css", "dst": "$HOME/.config/gtk-3.0/gtk.css" }
       ]
     },
     "fastfetch": {
-      "label": "Fastfetch",
+      "label": "Fastfetch — system info shown in new terminals",
       "default": true,
       "mappings": [
         { "src": "fastfetch/config.jsonc", "dst": "$HOME/.config/fastfetch/config.jsonc" },
@@ -61,14 +61,14 @@
       ]
     },
     "btop": {
-      "label": "btop",
+      "label": "btop++ — system resource monitor layout",
       "default": false,
       "mappings": [
         { "src": "btop/btop.conf", "dst": "$HOME/.config/btop/btop.conf" }
       ]
     },
     "swayosd": {
-      "label": "swayosd",
+      "label": "swayosd — volume & brightness popups",
       "default": false,
       "mappings": [
         { "src": "swayosd/config.toml", "dst": "$HOME/.config/swayosd/config.toml" },
@@ -76,42 +76,42 @@
       ]
     },
     "gamemode": {
-      "label": "GameMode",
+      "label": "GameMode — gaming performance tweaks",
       "default": false,
       "mappings": [
         { "src": "gamemode.ini", "dst": "$HOME/.config/gamemode.ini" }
       ]
     },
     "bin": {
-      "label": "Scripts (~/.local/bin)",
+      "label": "Helper scripts — wallpaper, themes, monitors & locks",
       "default": true,
       "globs": [
         { "src_glob": ".local/bin/*", "dst_dir": "$HOME/.local/bin" }
       ]
     },
     "shell": {
-      "label": "Shell",
+      "label": "Bash — shell startup config (.bashrc)",
       "default": false,
       "mappings": [
         { "src": ".bashrc", "dst": "$HOME/.bashrc" }
       ]
     },
     "omarchy_custom": {
-      "label": "Omarchy custom constants",
+      "label": "Omarchy constants — shared lists used by scripts",
       "default": true,
       "mappings": [
         { "src": "omarchy-custom/constants/video_exts.list", "dst": "$HOME/.config/omarchy-custom/constants/video_exts.list" }
       ]
     },
     "elephant": {
-      "label": "Elephant menus",
+      "label": "Elephant — wallpaper picker menu",
       "default": true,
       "mappings": [
         { "src": "elephant/menus/omarchy_custom_background_selector.lua", "dst": "$HOME/.config/elephant/menus/omarchy_custom_background_selector.lua" }
       ]
     },
     "omarchy": {
-      "label": "Omarchy hooks/extensions",
+      "label": "Omarchy hooks — theme & wallpaper automation",
       "default": true,
       "globs": [
         { "src_glob": "omarchy/hooks/*", "dst_dir": "$HOME/.config/omarchy/hooks" },
@@ -119,28 +119,28 @@
       ]
     },
     "systemd_user_services": {
-      "label": "systemd user services",
+      "label": "Background services — rclone, trash cleanup, mpvpaper",
       "default": false,
       "globs": [
         { "src_glob": "systemd/user/*", "dst_dir": "$HOME/.config/systemd/user" }
       ]
     },
     "extras_backgrounds": {
-      "label": "Backgrounds (extras)",
+      "label": "Wallpapers — live & static files copied to ~/Wallpapers",
       "default": false,
       "globs": [
         { "src_glob": "extras/backgrounds/**", "dst_dir": "$HOME/Wallpapers" }
       ]
     },
     "windows": {
-      "label": "Windows (docker compose)",
+      "label": "Windows VM — Docker Compose setup for Winapps",
       "default": false,
       "mappings": [
         { "src": "windows/docker-compose.yml", "dst": "$HOME/.config/omarchy-custom/windows/docker-compose.yml" }
       ]
     },
     "etc": {
-      "label": "System configs (/etc)",
+      "label": "System /etc — mkinitcpio, SDDM & modprobe (sudo)",
       "default": false,
       "requires_sudo": true,
       "globs": [
@@ -148,7 +148,7 @@
       ]
     },
     "boot": {
-      "label": "Boot configs (/boot)",
+      "label": "System /boot — Limine bootloader config (sudo)",
       "default": false,
       "requires_sudo": true,
       "globs": [
@@ -156,7 +156,7 @@
       ]
     },
     "usr": {
-      "label": "System configs (/usr)",
+      "label": "System /usr — SDDM login screen theme (sudo)",
       "default": false,
       "requires_sudo": true,
       "globs": [

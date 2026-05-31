@@ -387,25 +387,27 @@ parse_args() {
 interactive_select_groups() {
   require_gum
 
-  local items=() defaults=() labels=() line key label def req
+  local keys=() labels=() defaults=() line key label def req
   while IFS=$'\t' read -r key label def req; do
-    items+=("$key")
-    labels+=("$key - $label")
-    [[ "$def" == "1" ]] && defaults+=("$key - $label")
+    keys+=("$key")
+    labels+=("$label")
+    [[ "$def" == "1" ]] && defaults+=("$label")
   done < <(py_groups)
 
   local selected_labels
   if gum choose --help 2>&1 | grep -q -- '--selected'; then
-    selected_labels="$(printf '%s\n' "${labels[@]}" | gum choose --no-limit --selected "$(printf '%s,' "${defaults[@]}" | sed 's/,$//')" --header "Select config groups")"
+    selected_labels="$(printf '%s\n' "${labels[@]}" | gum choose --no-limit --selected "$(printf '%s,' "${defaults[@]}" | sed 's/,$//')" --header "What do you want to install?")"
   else
-    selected_labels="$(printf '%s\n' "${labels[@]}" | gum choose --no-limit --header "Select config groups")"
+    selected_labels="$(printf '%s\n' "${labels[@]}" | gum choose --no-limit --header "What do you want to install?")"
   fi
 
   local selected=""
-  local l
+  local l i
   while IFS= read -r l; do
     [[ -z "$l" ]] && continue
-    selected="$(csv_add "$selected" "${l%% *}")"
+    for i in "${!labels[@]}"; do
+      [[ "${labels[$i]}" == "$l" ]] && selected="$(csv_add "$selected" "${keys[$i]}")"
+    done
   done <<<"$selected_labels"
 
   printf '%s' "$selected"
