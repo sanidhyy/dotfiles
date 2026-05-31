@@ -73,6 +73,7 @@ function GetEntries()
   -- Directories to search
   local dirs = {
     home .. "/.config/omarchy/current/theme/backgrounds",
+    home .. "/Wallpapers",
   }
   if theme_name then
     table.insert(dirs, home .. "/.config/omarchy/backgrounds/" .. theme_name)
