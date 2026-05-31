@@ -19,6 +19,15 @@ sudo_prefix_for_dst() {
   return 0
 }
 
+should_copy_dst() {
+  # System paths are copied; home configs are symlinked.
+  local dst="$1"
+  case "$dst" in
+    /etc/*|/usr/*|/boot/*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
 abspath_repo_root() {
   # install/lib.sh -> install/ -> repo root
   local script_dir
@@ -176,13 +185,13 @@ sudo_warmup_if_needed() {
     return 0
   fi
   if ! have sudo; then
-    warn "sudo not found; will skip any /etc or /boot installs."
+    warn "sudo not found; will skip any /etc, /usr, or /boot installs."
     return 1
   fi
   if sudo -v; then
     return 0
   fi
-  warn "sudo auth failed; will skip any /etc or /boot installs."
+  warn "sudo auth failed; will skip any /etc, /usr, or /boot installs."
   return 1
 }
 

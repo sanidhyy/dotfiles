@@ -130,7 +130,7 @@ install_group() {
       warn "Missing source file, skipping: $src_rel"
       continue
     fi
-    if [[ "$group" == "boot" ]]; then
+    if should_copy_dst "$dst"; then
       copy_file "$src" "$dst"
     else
       link_file "$src" "$dst"
@@ -149,8 +149,12 @@ install_group() {
     while IFS= read -r abs; do
       rel_path="${abs#$REPO_ROOT/}"
       rel_under="${rel_path#"$base"}"
-      dst="${dst_dir%/}/$rel_under"
-      if [[ "$group" == "extras_backgrounds" || "$group" == "boot" ]]; then
+      if [[ "$group" == "extras_backgrounds" ]]; then
+        dst="${dst_dir%/}/$(basename -- "$abs")"
+      else
+        dst="${dst_dir%/}/$rel_under"
+      fi
+      if [[ "$group" == "extras_backgrounds" ]] || should_copy_dst "$dst"; then
         copy_file "$abs" "$dst"
       else
         link_file "$abs" "$dst"
