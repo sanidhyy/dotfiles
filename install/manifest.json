@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "groups": {
+    "hypr": {
+      "label": "Hyprland",
+      "default": true,
+      "mappings": [
+        { "src": "hypr/autostart.conf", "dst": "$HOME/.config/hypr/autostart.conf" },
+        { "src": "hypr/bindings.conf", "dst": "$HOME/.config/hypr/bindings.conf" },
+        { "src": "hypr/input.conf", "dst": "$HOME/.config/hypr/input.conf" },
+        { "src": "hypr/looknfeel.conf", "dst": "$HOME/.config/hypr/looknfeel.conf" },
+        { "src": "hypr/hypridle.conf", "dst": "$HOME/.config/hypr/hypridle.conf" },
+        { "src": "hypr/hyprlock.conf", "dst": "$HOME/.config/hypr/hyprlock.conf" },
+        { "src": "hypr/hyprlock-background-normal.conf", "dst": "$HOME/.config/hypr/hyprlock-background-normal.conf" },
+        { "src": "hypr/hyprlock-background-video.conf", "dst": "$HOME/.config/hypr/hyprlock-background-video.conf" },
+        { "src": "hypr/monitors.conf", "dst": "$HOME/.config/hypr/monitors.conf" }
+      ]
+    },
+    "waybar": {
+      "label": "Waybar",
+      "default": true,
+      "mappings": [
+        { "src": "waybar/config.jsonc", "dst": "$HOME/.config/waybar/config.jsonc" },
+        { "src": "waybar/style.css", "dst": "$HOME/.config/waybar/style.css" },
+        { "src": "waybar/mocha.css", "dst": "$HOME/.config/waybar/mocha.css" },
+        { "src": "waybar/workspaces-single.jsonc", "dst": "$HOME/.config/waybar/workspaces-single.jsonc" },
+        { "src": "waybar/workspaces-dual.jsonc", "dst": "$HOME/.config/waybar/workspaces-dual.jsonc" },
+        { "src": "gpu_usage_waybar.toml", "dst": "$HOME/.config/gpu_usage_waybar.toml" }
+      ],
+      "globs": [
+        { "src_glob": "waybar/scripts/*", "dst_dir": "$HOME/.config/waybar/scripts" }
+      ]
+    },
+    "kitty": {
+      "label": "Kitty",
+      "default": true,
+      "mappings": [
+        { "src": "kitty/kitty.conf", "dst": "$HOME/.config/kitty/kitty.conf" }
+      ]
+    },
+    "starship": {
+      "label": "Starship",
+      "default": true,
+      "mappings": [
+        { "src": "starship.toml", "dst": "$HOME/.config/starship.toml" }
+      ]
+    },
+    "gtk": {
+      "label": "GTK",
+      "default": true,
+      "mappings": [
+        { "src": "gtk.css", "dst": "$HOME/.config/gtk-3.0/gtk.css" }
+      ]
+    },
+    "fastfetch": {
+      "label": "Fastfetch",
+      "default": true,
+      "mappings": [
+        { "src": "fastfetch/config.jsonc", "dst": "$HOME/.config/fastfetch/config.jsonc" },
+        { "src": "fastfetch/hatsune-miku.png", "dst": "$HOME/.config/fastfetch/hatsune-miku.png" }
+      ]
+    },
+    "btop": {
+      "label": "btop",
+      "default": false,
+      "mappings": [
+        { "src": "btop/btop.conf", "dst": "$HOME/.config/btop/btop.conf" }
+      ]
+    },
+    "swayosd": {
+      "label": "swayosd",
+      "default": false,
+      "mappings": [
+        { "src": "swayosd/config.toml", "dst": "$HOME/.config/swayosd/config.toml" },
+        { "src": "swayosd/style.css", "dst": "$HOME/.config/swayosd/style.css" }
+      ]
+    },
+    "gamemode": {
+      "label": "GameMode",
+      "default": false,
+      "mappings": [
+        { "src": "gamemode.ini", "dst": "$HOME/.config/gamemode.ini" }
+      ]
+    },
+    "bin": {
+      "label": "Scripts (~/.local/bin)",
+      "default": true,
+      "globs": [
+        { "src_glob": ".local/bin/*", "dst_dir": "$HOME/.local/bin" }
+      ]
+    },
+    "shell": {
+      "label": "Shell",
+      "default": false,
+      "mappings": [
+        { "src": ".bashrc", "dst": "$HOME/.bashrc" }
+      ]
+    },
+    "omarchy_custom": {
+      "label": "Omarchy custom constants",
+      "default": true,
+      "mappings": [
+        { "src": "omarchy-custom/constants/video_exts.list", "dst": "$HOME/.config/omarchy-custom/constants/video_exts.list" }
+      ]
+    },
+    "elephant": {
+      "label": "Elephant menus",
+      "default": true,
+      "mappings": [
+        { "src": "elephant/menus/omarchy_custom_background_selector.lua", "dst": "$HOME/.config/elephant/menus/omarchy_custom_background_selector.lua" }
+      ]
+    },
+    "omarchy": {
+      "label": "Omarchy hooks/extensions",
+      "default": true,
+      "globs": [
+        { "src_glob": "omarchy/hooks/*", "dst_dir": "$HOME/.config/omarchy/hooks" },
+        { "src_glob": "omarchy/extensions/*", "dst_dir": "$HOME/.config/omarchy/extensions" }
+      ]
+    },
+    "systemd_user_services": {
+      "label": "systemd user services",
+      "default": false,
+      "globs": [
+        { "src_glob": "systemd/user/*", "dst_dir": "$HOME/.config/systemd/user" }
+      ]
+    },
+    "extras_backgrounds": {
+      "label": "Backgrounds (extras)",
+      "default": false,
+      "globs": [
+        { "src_glob": "extras/backgrounds/**", "dst_dir": "$HOME/Wallpapers" }
+      ]
+    },
+    "windows": {
+      "label": "Windows (docker compose)",
+      "default": false,
+      "mappings": [
+        { "src": "windows/docker-compose.yml", "dst": "$HOME/.config/omarchy-custom/windows/docker-compose.yml" }
+      ]
+    },
+    "etc": {
+      "label": "System configs (/etc)",
+      "default": false,
+      "requires_sudo": true,
+      "globs": [
+        { "src_glob": "etc/**", "dst_dir": "/etc" }
+      ]
+    },
+    "boot": {
+      "label": "Boot configs (/boot)",
+      "default": false,
+      "requires_sudo": true,
+      "globs": [
+        { "src_glob": "boot/**", "dst_dir": "/boot" }
+      ]
+    },
+    "usr": {
+      "label": "System configs (/usr)",
+      "default": false,
+      "requires_sudo": true,
+      "globs": [
+        { "src_glob": "usr/**", "dst_dir": "/usr" }
+      ]
+    }
+  }
+}
+
