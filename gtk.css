@@ -81,13 +81,18 @@ messagedialog button {
   color: @foreground;
   border: 1px solid @bright_black;
   padding: 10px;
+  text-shadow: none;
+  box-shadow: none;
 }
 
 messagedialog action-area button:hover,
 dialog action-area button:hover,
 messagedialog button:hover {
   background-color: @theme_selected_bg_color;
+  background-image: none;
   color: @theme_selected_fg_color;
+  text-shadow: none;
+  box-shadow: none;
 }
 
 /* Other tweaks */
