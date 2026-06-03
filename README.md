@@ -1,12 +1,12 @@
 # :house: Dotfiles — OMARCHY Setup
 
-My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme ":smiley_cat: Catppuccin Mocha Theme for Omarchy"), designed around [Omarchy](https://omarchy.org "Omarchy by DHH")
+My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme "😺 Catppuccin Mocha Theme for Omarchy"), designed around [Omarchy](https://omarchy.org "Omarchy by DHH")
 
 ![Desktop Preview](/.github/images/img1.png "Desktop Preview")
 
 ## :sparkles: Tweaks
 
-- :zap: Based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme ":smiley_cat: Catppuccin Mocha Theme for Omarchy").
+- :zap: Based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme "😺 Catppuccin Mocha Theme for Omarchy").
 - :desktop_computer: **Hyprland** window manager with OMARCHY-aligned tweaks for dual monitor setup.
 - :lollipop: Catppuccin-styled **Waybar** with privacy dots, cava player, etc...
 - :memo: **Kitty** terminal colors and settings configurations.
