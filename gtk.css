@@ -88,9 +88,9 @@ messagedialog button {
 messagedialog action-area button:hover,
 dialog action-area button:hover,
 messagedialog button:hover {
-  background-color: @theme_selected_bg_color;
+  background-color: @card_bg_color;
   background-image: none;
-  color: @theme_selected_fg_color;
+  color: @foreground;
   text-shadow: none;
   box-shadow: none;
 }
@@ -102,8 +102,8 @@ toast {
 }
 
 toast button.circular.flat.image-button:hover {
-  color: @theme_selected_fg_color;
-  background-color: @theme_selected_bg_color;
+  background-color: @card_bg_color;
+  color: @foreground;
 }
 
 .sidebar:backdrop,
@@ -140,4 +140,118 @@ dialog .titlebar {
   background-image: none;
   border: none;
   box-shadow: none;
+}
+
+filechooser dialog,
+filechooser headerbar,
+.file-chooser headerbar,
+filechooser .titlebar,
+window:backdrop filechooser headerbar,
+window:backdrop .file-chooser headerbar {
+  background-color: @background;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  color: @foreground;
+}
+
+filechooser .view,
+filechooser treeview,
+filechooser treeview header button,
+filechooser .view header button,
+window:backdrop filechooser .view,
+window:backdrop filechooser treeview {
+  background-color: @background;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  color: @foreground;
+}
+
+filechooser treeview header button:hover {
+  background-color: @card_bg_color;
+  background-image: none;
+}
+
+filechooser entry,
+filechooser searchbar {
+  background-color: @black;
+  border: 1px solid @bright_black;
+  color: @foreground;
+}
+
+filechooser placessidebar,
+window:backdrop filechooser placessidebar {
+  background-color: @background;
+}
+
+headerbar button,
+.path-bar button {
+  background-color: @card_bg_color;
+  color: @foreground;
+  background-image: none;
+  text-shadow: none;
+  shadow: none;
+}
+
+headerbar button:hover,
+.path-bar button:hover {
+  background-color: alpha(@card_bg_color, 0.8);
+}
+
+headerbar button.suggested-action {
+  background-color: @blue;
+  color: @background;
+  background-image: none;
+}
+
+filechooser .view:hover,
+filechooser .view:selected {
+  background-color: @card_bg_color;
+}
+
+headerbar button.suggested-action:hover {
+  background-color: alpha(@blue, 0.8);
+}
+
+checkbutton check,
+dialog popover check {
+  background-color: @black;
+  border: 1px solid @bright_black;
+  background-image: none;
+}
+
+checkbutton check:checked,
+dialog popover check:checked {
+  background-color: @blue;
+  color: @background;
+  border-color: @blue;
+}
+
+.sidebar row:selected {
+  background-color: @card_bg_color;
+}
+
+dialog popover {
+  background-color: @popover_bg_color;
+}
+
+dialog popover modelbutton:hover {
+  background-color: @card_bg_color;
+}
+
+dialog actionbar button {
+  background-image: none;
+  background-color: @card_bg_color;
+}
+
+dialog actionbar menu {
+  background-image: none;
+  background-color: @popover_bg_color;
+}
+
+dialog actionbar menuitem:hover {
+  background-image: none;
+  background-color: @blue;
+  color: @background;
 }
