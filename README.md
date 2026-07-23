@@ -26,28 +26,36 @@ My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](http
 
 ![Unlock Preview](/.github/images/img5.png "Unlock Preview")
 
-## :rocket: Installation
+## :file_folder: Layout
 
-```bash
-git clone https://github.com/sanidhyy/dotfiles.git
-cd dotfiles/install
-chmod +x install.sh
-./install.sh
-```
-
-:open_book: See [install/README.md](install/README.md "Install documentation") for more details.
-
-## :gear: Update
-
-```bash
-git pull
-```
+| Path                    | Typical destination               |
+| ----------------------- | --------------------------------- |
+| `hypr/`                 | `~/.config/hypr/`                 |
+| `waybar/`               | `~/.config/waybar/`               |
+| `kitty/`                | `~/.config/kitty/`                |
+| `starship.toml`         | `~/.config/starship.toml`         |
+| `gtk.css`               | `~/.config/gtk-x.0/gtk.css`       |
+| `fastfetch/`            | `~/.config/fastfetch/`            |
+| `btop/`                 | `~/.config/btop/`                 |
+| `swayosd/`              | `~/.config/swayosd/`              |
+| `gamemode.ini`          | `~/.config/gamemode.ini`          |
+| `gpu_usage_waybar.toml` | `~/.config/gpu_usage_waybar.toml` |
+| `.bashrc`               | `~/.bashrc`                       |
+| `.local/bin/`           | `~/.local/bin/`                   |
+| `omarchy/`              | `~/.config/omarchy/`              |
+| `omarchy-custom/`       | `~/.config/omarchy-custom/`       |
+| `elephant/`             | `~/.config/elephant/`             |
+| `systemd/`              | `~/.config/systemd/user/`         |
+| `extras/backgrounds/`   | `~/Wallpapers`                    |
+| `windows/`              | `~/.config/windows/`              |
+| `boot/`                 | `/boot/`                          |
+| `etc/`                  | `/etc/`                           |
+| `usr/`                  | `/usr/`                           |
 
 ## :pray: Credits
 
 - [DHH](https://x.com/dhh "David Heinemeier Hansson") & the Omarchy team for the excellent project.
 - [Catppuccin](https://github.com/catppuccin "Catppuccin Mocha") community for the beautiful palette and ecosystem.
-- [gum](https://github.com/charmbracelet/gum "gum by Charm") for the interactive installer UX.
 
 ## :page_facing_up: License and Third-Party Notes
 
@@ -57,4 +65,4 @@ git pull
 
 ## :warning: Disclaimer
 
-This project is actively developed and tested on my own machine. Layouts, keybinds, and scripts may change without notice. Some features assume specific hardware or workflows. Back up your existing configs before installing. Feel free to create an issue if something breaks.
+These are my personal configs and might not work as expected on your machine. Feel free to contribute or open an issue if something seems wrong.
