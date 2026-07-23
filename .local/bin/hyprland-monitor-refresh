@@ -2,7 +2,6 @@
 
 # Watch Hyprland monitor add/remove events and keep UI in sync.
 # Sets Waybar workspaces layout (single/dual) and restores background selection.
-# Dependencies: hyprctl, socat, omarchy-custom-waybar-swap, omarchy-custom-theme-bg-restore.
 
 source ~/.config/omarchy-custom/constants/monitors.env
 

@@ -2,7 +2,6 @@
 
 # Toggle the external monitor on/off in Hyprland.
 # Also switches Waybar layout (single/dual) and restores background selection.
-# Dependencies: hyprctl, notify-send, omarchy-custom-waybar-swap, omarchy-custom-theme-bg-restore.
 
 source ~/.config/omarchy-custom/constants/monitors.env
 
@@ -16,6 +15,8 @@ if ! grep -q "^connected$" /sys/class/drm/card*-${port_type}*/status 2>/dev/null
 fi
 
 if hyprctl monitors | grep -q "Monitor $EXT_MONITOR"; then
+  omarchy-hyprland-monitor-internal on
+
   hyprctl keyword monitor "$EXT_MONITOR,disable"
   notify-send -u low "󰍹    External display disabled"
 

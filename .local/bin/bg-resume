@@ -2,7 +2,6 @@
 
 # Resume previously paused video wallpaper (mpvpaper).
 # Restores the last playing video stored by `bg-pause`.
-# Dependencies: omarchy-custom-theme-bg-set.
 
 if [ -f /tmp/gamemode_bg_vid ]; then
     VID_PATH=$(cat /tmp/gamemode_bg_vid)

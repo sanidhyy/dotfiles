@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Print a one-line system summary for Hyprlock.
-# Dependencies: omarchy-version.
 
 user=$(whoami)
 host=$(hostname)

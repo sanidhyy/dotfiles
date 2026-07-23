@@ -4,5 +4,5 @@
 
 pkill -CONT -x mpvpaper >/dev/null 2>&1 || true
 
-( omarchy-brightness-display on ) &
-# TODO:KBD backlight restore (Work in progress)
+omarchy-brightness-display on
+byd-n16-rgb --resume

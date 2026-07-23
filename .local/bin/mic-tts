@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Create a temporary virtual audio device for TTS and speak the text.
+# Usage: mic-tts
+
+# Variables to store the IDs of our temporary devices
+SINK_ID=""
+MIC_ID=""
+
+cleanup() {
+    # Disable the trap immediately so this function cannot run twice
+    trap - EXIT INT TERM
+    
+    echo -e "\nCleaning up virtual devices..."
+    if [[ -n "$SINK_ID" ]]; then
+        pactl unload-module "$SINK_ID"
+    fi
+    if [[ -n "$MIC_ID" ]]; then
+        pactl unload-module "$MIC_ID"
+    fi
+    echo "Cleanup complete. Goodbye!"
+    exit 0
+}
+
+# Catches Ctrl+C or normal exits and runs the cleanup function
+trap cleanup EXIT INT TERM
+
+echo "Creating temporary virtual audio devices..."
+SINK_ID=$(pactl load-module module-null-sink sink_name=VirtualTTS sink_properties=device.description="VirtualTTS")
+MIC_ID=$(pactl load-module module-remap-source master=VirtualTTS.monitor source_name=VirtualMic source_properties=device.description="VirtualMic")
+
+echo "Success! Please select 'VirtualMic' in your browser."
+echo "---------------------------------------------------"
+
+while true; do
+    # Ask for user input
+    read -p "What should I say? (Leave blank & press Enter to exit): " user_input
+    
+    # If the input is empty (-z), break the loop (which triggers the cleanup trap)
+    if [[ -z "$user_input" ]]; then
+        break
+    fi
+    
+    # Otherwise, speak the text!
+    echo "$user_input" | piper-tts -m $HOME/.config/piper/en_US-ryan-medium.onnx -f - | pw-play --target=VirtualTTS -
+done

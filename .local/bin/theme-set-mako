@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Fix mako border radius when the theme is updated.
+
 TARGET_FILE="$HOME/.config/omarchy/current/theme/mako.ini"
 INDICATOR="# --- CUSTOM BORDER --- #"
 

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Compose the Hyprlock top-right bar text (now-playing + battery).
-# Dependencies: waybar-now-playing, hyprlock-battery-indicator, jq.
 
 np_raw=$(~/.local/bin/waybar-now-playing | jq -r '.text // ""')
 bat_raw=$(~/.local/bin/hyprlock-battery-indicator)

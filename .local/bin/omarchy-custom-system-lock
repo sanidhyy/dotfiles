@@ -3,7 +3,6 @@
 # Lock screen helper that supports video wallpapers (mpvpaper overlay).
 # If the current background is a video, it makes Hyprlock background transparent
 # and resumes the wallpaper after unlock.
-# Dependencies: hyprlock, mpvpaper, hyprctl, bg-pause/bg-resume.
 
 set -euo pipefail
 
@@ -17,8 +16,8 @@ if [[ "${OMARCHY_LOCK_ONLY:-false}" != "true" ]]; then
     sleep 3
     pkill -STOP -x mpvpaper >/dev/null 2>&1 || true
 
-    # TODO: KBD brightness (Work in progress)
     omarchy-brightness-display off
+    byd-n16-rgb --suspend
 
     # New polling loop to catch manual wakes
     while pidof hyprlock >/dev/null; do
