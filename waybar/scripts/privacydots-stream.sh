@@ -2,7 +2,6 @@
 
 # Continuous privacydots module for Waybar.
 # Runs forever and prints a JSON line whenever mic/cam state changes.
-# Dependencies: privacydots.sh.
 
 set -euo pipefail
 

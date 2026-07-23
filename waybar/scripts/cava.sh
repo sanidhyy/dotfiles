@@ -2,7 +2,6 @@
 
 # Render a small audio visualizer for Waybar using CAVA (with Catppuccin Mocha colors).
 # Prints bar characters with Pango markup to stdout continuously.
-# Dependencies: cava, sed.
 
 config_file="/tmp/waybar_cava_config"
 

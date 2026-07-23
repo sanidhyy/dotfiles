@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 # Privacy dots for Waybar (mic + camera indicators).
 # Prints JSON for Waybar; returns empty when nothing is active.
-# Dependencies: pipewire (pw-dump), jq, fuser.
 
 set -euo pipefail
 
-# Dependencies: pipewire (pw-dump), jq, fuser
 JQ_BIN="${JQ:-jq}"
 PW_DUMP_CMD="${PW_DUMP:-pw-dump}"
 
