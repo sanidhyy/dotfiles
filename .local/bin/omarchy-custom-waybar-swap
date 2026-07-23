@@ -1,17 +1,52 @@
 #!/bin/bash
 
 # Switch Waybar workspace layout between single/dual monitor modes.
-# Creates/updates the `workspaces-active.jsonc` symlink and restarts Waybar.
-# Usage: omarchy-custom-waybar-swap <single|dual>
+# Creates/updates the `workspaces-active.jsonc` symlink and restarts Waybar
+# (unless the link already matches, or --no-restart is passed).
+# Usage: omarchy-custom-waybar-swap <single|dual> [--no-restart|--force-restart]
 # Example: omarchy-custom-waybar-swap dual
 
 MODE="$1"
+NO_RESTART=0
+FORCE_RESTART=0
 
-if [[ "$MODE" == "single" || "$MODE" == "dual" ]]; then
-    ln -nsf "$HOME/.config/waybar/workspaces-${MODE}.jsonc" "$HOME/.config/waybar/workspaces-active.jsonc"
-    omarchy-restart-waybar
-else
-    echo "Usage: omarchy-custom-waybar-swap <single|dual>"
-    echo "Example: omarchy-custom-waybar-swap dual"
-    exit 1
+case "$2" in
+  --no-restart) NO_RESTART=1 ;;
+  --force-restart) FORCE_RESTART=1 ;;
+esac
+
+if [[ "$MODE" != "single" && "$MODE" != "dual" ]]; then
+  echo "Usage: omarchy-custom-waybar-swap <single|dual> [--no-restart|--force-restart]"
+  echo "Example: omarchy-custom-waybar-swap dual"
+  exit 1
 fi
+
+TARGET="$HOME/.config/waybar/workspaces-${MODE}.jsonc"
+LINK="$HOME/.config/waybar/workspaces-active.jsonc"
+LOCK="${XDG_RUNTIME_DIR:-/tmp}/omarchy-custom-waybar-restart.lock"
+
+link_matches=0
+if [[ -L "$LINK" && "$(readlink -f "$LINK")" == "$(readlink -f "$TARGET")" ]]; then
+  link_matches=1
+fi
+
+if [[ "$link_matches" -eq 1 && "$FORCE_RESTART" -eq 0 ]]; then
+  exit 0
+fi
+
+if [[ "$link_matches" -eq 0 ]]; then
+  ln -nsf "$TARGET" "$LINK"
+fi
+
+if [[ "$NO_RESTART" -eq 1 ]]; then
+  exit 0
+fi
+
+# Serialize restarts so concurrent calls cannot leave two Waybar processes.
+(
+  flock 9 || exit 1
+  pkill -9 -x waybar 2>/dev/null || true
+  sleep 0.15
+  pkill -9 -x waybar 2>/dev/null || true
+  setsid uwsm-app -- waybar >/dev/null 2>&1 &
+) 9>"$LOCK"

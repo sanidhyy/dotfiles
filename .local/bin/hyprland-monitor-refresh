@@ -6,24 +6,58 @@
 source ~/.config/omarchy-custom/constants/monitors.env
 
 SOCKET="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+DEBOUNCE_PID=""
+SWAP="$HOME/.local/bin/omarchy-custom-waybar-swap"
 
-handle() {
-    case $1 in
-        monitorremoved\>\>*|monitorremovedv2\>\>*)
-            ~/.local/bin/omarchy-custom-waybar-swap single
-            ~/.local/bin/omarchy-custom-theme-bg-restore
-            ;;
-        monitoradded\>\>*|monitoraddedv2\>\>*)
-            ~/.local/bin/omarchy-custom-waybar-swap dual
-            ~/.local/bin/omarchy-custom-theme-bg-restore
-            ;;
-    esac
+schedule_sync() {
+  local mode="$1"
+
+  if [[ -n "$DEBOUNCE_PID" ]] && kill -0 "$DEBOUNCE_PID" 2>/dev/null; then
+    kill "$DEBOUNCE_PID" 2>/dev/null || true
+  fi
+
+  (
+    sleep 0.3
+    "$SWAP" "$mode"
+    ~/.local/bin/omarchy-custom-theme-bg-restore
+  ) &
+  DEBOUNCE_PID=$!
 }
 
+handle() {
+  case $1 in
+    monitorremoved\>\>*|monitorremovedv2\>\>*)
+      schedule_sync single
+      ;;
+    monitoradded\>\>*|monitoraddedv2\>\>*)
+      schedule_sync dual
+      ;;
+  esac
+}
+
+# Boot: sync symlink without restarting (avoids racing Omarchy's first waybar).
+# If the layout actually changed vs last session, one delayed restart picks it up
+# after the initial waybar has started — still locked, so no double spawn.
 if hyprctl monitors | grep -q "Monitor $EXT_MONITOR"; then
-    ~/.local/bin/omarchy-custom-waybar-swap dual
+  boot_mode=dual
 else
-    ~/.local/bin/omarchy-custom-waybar-swap single
+  boot_mode=single
+fi
+
+boot_target="$HOME/.config/waybar/workspaces-${boot_mode}.jsonc"
+boot_link="$HOME/.config/waybar/workspaces-active.jsonc"
+boot_changed=0
+if [[ ! -L "$boot_link" || "$(readlink -f "$boot_link")" != "$(readlink -f "$boot_target")" ]]; then
+  boot_changed=1
+fi
+
+"$SWAP" "$boot_mode" --no-restart
+
+if [[ "$boot_changed" -eq 1 ]]; then
+  (
+    sleep 1
+    "$SWAP" "$boot_mode" --force-restart
+  ) &
 fi
 
 socat -U - "UNIX-CONNECT:$SOCKET" | while read -r event; do
