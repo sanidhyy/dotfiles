@@ -1,0 +1,4 @@
+#!/bin/sh
+~/.local/bin/bg-resume
+~/.local/bin/omarchy-brightness-external "- 50"
+~/.local/bin/steam-fullscreen-fix &

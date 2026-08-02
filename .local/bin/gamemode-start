@@ -1,0 +1,3 @@
+#!/bin/sh
+~/.local/bin/bg-pause
+~/.local/bin/omarchy-brightness-external "+ 100"
