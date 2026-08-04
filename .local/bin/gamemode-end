@@ -1,4 +1,6 @@
 #!/bin/sh
 ~/.local/bin/bg-resume
+omarchy-hyprland-monitor-internal on
+omarchy-restart-waybar
 ~/.local/bin/omarchy-brightness-external "- 50"
 ~/.local/bin/steam-fullscreen-fix &

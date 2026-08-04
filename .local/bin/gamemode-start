@@ -1,3 +1,5 @@
 #!/bin/sh
 ~/.local/bin/bg-pause
+omarchy-hyprland-monitor-internal off
+omarchy-restart-waybar
 ~/.local/bin/omarchy-brightness-external "+ 100"
