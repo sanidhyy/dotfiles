@@ -14,6 +14,9 @@ My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](http
 - :rocket: **Starship** shell prompt styling.
 - :art: **GTK** 3.0 and 4.0 styles for Catppuccin Mocha.
 - :lock: **Limine** boot and **SDDM** login style configurations.
+- :notes: **Cava** visualizer (Catppuccin Mocha theme) and **Cliamp** player config.
+- :film_projector: **imv** image viewer and **mpv** player configs.
+- :globe_with_meridians: **Brave** flags plus **Git** and **Lazygit** configs.
 - :wrench: Configurations for **Btop**, **Fastfetch**, **SwayOSD**, etc...
 
 ## :camera_flash: Preview
@@ -38,6 +41,13 @@ My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](http
 | `fastfetch/`            | `~/.config/fastfetch/`            |
 | `btop/`                 | `~/.config/btop/`                 |
 | `swayosd/`              | `~/.config/swayosd/`              |
+| `cava/`                 | `~/.config/cava/`                 |
+| `cliamp/`               | `~/.config/cliamp/`               |
+| `git/`                  | `~/.config/git/`                  |
+| `lazygit/`              | `~/.config/lazygit/`              |
+| `imv/`                  | `~/.config/imv/`                  |
+| `mpv/`                  | `~/.config/mpv/`                  |
+| `brave-flags.conf`      | `~/.config/brave-flags.conf`      |
 | `gamemode.ini`          | `~/.config/gamemode.ini`          |
 | `gpu_usage_waybar.toml` | `~/.config/gpu_usage_waybar.toml` |
 | `.bashrc`               | `~/.bashrc`                       |
