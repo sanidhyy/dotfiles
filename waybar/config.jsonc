@@ -210,11 +210,10 @@
     },
     "custom/cava-player": {
       "format": "{}",
-      "exec": "~/.config/waybar/scripts/playerinfo.sh",
+      "exec": "~/.config/waybar/scripts/playerinfo-stream.sh",
       "return-type": "json",
       "escape": true,
       "tooltip": true,
-      "interval": 2,
       "on-click": "playerctl play-pause"
     },
     "tray": {
