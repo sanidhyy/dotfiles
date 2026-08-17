@@ -10,7 +10,6 @@ source ~/.local/share/omarchy/default/bash/rc
 # Make an alias for invoking commands you use constantly
 # alias p='python'
 alias rm='trash'
-alias speedtest='SpeedTest'
 
 # react dev server default editor
 export REACT_EDITOR=cursor
