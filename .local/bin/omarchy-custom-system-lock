@@ -6,6 +6,10 @@
 
 set -euo pipefail
 
+if pidof hyprlock > /dev/null; then
+  exit 0
+fi
+
 if [[ "${OMARCHY_LOCK_ONLY:-false}" != "true" ]]; then
   (
     for _ in {1..5}; do
@@ -29,10 +33,6 @@ if [[ "${OMARCHY_LOCK_ONLY:-false}" != "true" ]]; then
       sleep 0.4
     done
   ) &
-fi
-
-if pidof hyprlock > /dev/null; then
-  exit 0
 fi
 
 MPV_PID=""

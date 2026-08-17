@@ -7,6 +7,17 @@
 
 TARGET_FILE="$1"
 
+stop_wallpaper() {
+  local pattern=$1
+  pkill -CONT -f "$pattern" 2>/dev/null || true
+  pkill -TERM -f "$pattern" 2>/dev/null || true
+  for _ in {1..20}; do
+    pgrep -f "$pattern" >/dev/null || return 0
+    sleep 0.1
+  done
+  pkill -KILL -f "$pattern" 2>/dev/null || true
+}
+
 if [[ $# -lt 1 || -z "${TARGET_FILE:-}" ]]; then
   echo "Usage: omarchy-custom-theme-bg-set <path-to-image-or-video>"
   echo "Example: omarchy-custom-theme-bg-set \"$HOME/Pictures/wallpaper.mp4\""
@@ -33,8 +44,8 @@ EXT_PATTERN="^(${exts//$'\n'/|})$"
 echo "$TARGET_FILE" > "$HOME/.cache/omarchy-custom/background.file"
 
 if [[ "$extension" =~ $EXT_PATTERN ]]; then
-  pkill -x swaybg
-  pkill -x mpvpaper
+  stop_wallpaper "^/usr/bin/swaybg"
+  stop_wallpaper "mpvpaper -p "
 
   setsid uwsm-app -- mpvpaper -p -o "no-audio loop-file=inf hwdec=auto-safe cache=no keepaspect=no" '*' "$TARGET_FILE" >/dev/null 2>&1 &
 
@@ -46,7 +57,7 @@ if [[ "$extension" =~ $EXT_PATTERN ]]; then
 
   ln -nsf "$STATIC_THUMB" "$HOME/.config/omarchy/current/background"
 else
-  pkill -x mpvpaper
+  stop_wallpaper "mpvpaper -p "
 
   omarchy-theme-bg-set "$TARGET_FILE"
 fi
