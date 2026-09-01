@@ -122,7 +122,9 @@
       "max-volume": 130,
       "format-icons": {
         "alsa_output.usb-C-Media_Electronics_Inc._USB_Audio_Device-00.analog-stereo": "\udb80\udecb",
+        "alsa_output.usb-HP__Inc_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo": "\udb80\udecb",
         "alsa_output.usb-C-Media_Electronics_Inc._USB_Audio_Device-00.analog-stereo-muted": "\udb81\udfce",
+        "alsa_output.usb-HP__Inc_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo-muted": "\udb81\udfce",
         "headphone": "\udb80\udecb",
         "headphone-muted": "\udb81\udfce",
         "headset": "\udb80\udecb",
