@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+
+restore() {
+  hyprctl --batch "$(
+    hyprctl clients -j | jq -r '.[] | "dispatch setprop address:\(.address) opaque off;"'
+  )" >/dev/null
+  hyprctl keyword animations:enabled true >/dev/null
+  hyprctl keyword decoration:dim_inactive true >/dev/null
+}
+trap restore EXIT
+
+# Instant redraw so hyprpicker does not freeze a mid-fade frame
+hyprctl keyword animations:enabled false >/dev/null
+hyprctl keyword decoration:dim_inactive false >/dev/null
+
+hyprctl --batch "$(
+  hyprctl clients -j | jq -r '.[] | "dispatch setprop address:\(.address) opaque on;"'
+)" >/dev/null
+
+sleep 0.08
+omarchy-capture-screenshot "$@"
