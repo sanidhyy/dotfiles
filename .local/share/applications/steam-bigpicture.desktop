@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Steam Big Picture
+Comment=Open Steam directly in Big Picture Mode
+Exec=env GDK_BACKEND=x11 /usr/bin/steam steam://open/bigpicture
+Icon=steam
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;Game;
