@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Stow user packages from this repo (never system/, extras/, or meta dirs).
+# Stow user packages from this repo (never system/, extras/, windows/, or meta dirs).
 set -euo pipefail
 
 cd "$(dirname "$(readlink -f "$0")")"
 
-exclude='^(system|\.git|\.github|\.cursor|extras)$'
+exclude='^(system|\.git|\.github|\.cursor|extras|windows)$'
 
 usage() {
   cat <<'EOF'
@@ -45,6 +45,10 @@ for arg in "$@"; do
       ;;
     extras)
       echo "Refusing to stow 'extras'. Copy wallpapers into ~/.config/omarchy/backgrounds/<current-theme>/ if you want them." >&2
+      exit 1
+      ;;
+    windows)
+      echo "Refusing to stow 'windows'. Keep ~/.config/windows/docker-compose.yml local so credentials stay out of git (see README)." >&2
       exit 1
       ;;
     *) packages+=("$arg") ;;

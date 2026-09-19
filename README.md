@@ -63,7 +63,7 @@ stow hypr waybar kitty
 ./stow.sh
 ```
 
-Do not run `stow *` — that would also pick up `system/` and other non-package directories.
+Do not run `stow *` — that would also pick up `system/`, `extras/`, `windows/`, and other non-package directories.
 
 **Update or remove**
 
@@ -92,6 +92,8 @@ Wallpapers in `extras/backgrounds/` are also copy-only. Copy them into the backg
 cp -r extras/backgrounds/catpuccin-dark/. ~/.config/omarchy/backgrounds/<current-theme>/
 ```
 
+**Windows VM compose is not a Stow package.** Leave `~/.config/windows/docker-compose.yml` as a local file so usernames and passwords stay off git. Use the copy in `windows/` as a template only.
+
 ## :file_folder: Layout
 
 | Path                | Destination                                   |
@@ -119,7 +121,7 @@ cp -r extras/backgrounds/catpuccin-dark/. ~/.config/omarchy/backgrounds/<current
 | `omarchy-custom/`   | `~/.config/omarchy-custom/`                   |
 | `elephant/`         | `~/.config/elephant/`                         |
 | `systemd/`          | `~/.config/systemd/`                          |
-| `windows/`          | `~/.config/windows/`                          |
+| `windows/`          | `~/.config/windows/` (copy template, not Stow) |
 | `extras/`           | `~/.config/omarchy/backgrounds/<current-theme>/` (copy, not Stow) |
 | `system/`           | `/boot/`, `/etc/`, `/usr/` (copy, not Stow)   |
 
