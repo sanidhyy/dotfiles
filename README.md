@@ -29,38 +29,95 @@ My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](http
 
 ![Unlock Preview](/.github/images/img5.png "Unlock Preview")
 
+## :package: Using Stow
+
+You can use [GNU Stow](https://www.gnu.org/software/stow/) to easily manage your dotfiles.
+
+```bash
+# Arch Linux
+sudo pacman -S stow
+
+# Debian / Ubuntu
+sudo apt install stow
+
+# Fedora
+sudo dnf install stow
+
+git clone https://github.com/sanidhyy/dotfiles.git
+cd dotfiles
+```
+
+Run Stow from the repo root.
+
+**One or several packages**
+
+```bash
+stow hypr
+stow hypr waybar kitty
+./stow.sh hypr waybar
+```
+
+**Every user package**
+
+```bash
+./stow.sh
+```
+
+Do not run `stow *` — that would also pick up `system/` and other non-package directories.
+
+**Update or remove**
+
+```bash
+stow -R hypr          # restow one package after a pull
+./stow.sh -R          # restow everything
+stow -D hypr          # unstow one package
+./stow.sh -D          # unstow everything
+./stow.sh -n          # dry-run (no links created)
+./stow.sh -h          # script help
+```
+
+**System files are not Stow packages.** Copy them (do not symlink). Bootloaders and SDDM often will not follow symlinks under `/boot` or `/usr`.
+
+```bash
+sudo cp -i system/etc/sddm.conf.d/numlock.conf /etc/sddm.conf.d/
+sudo cp -i system/etc/modprobe.d/blacklist-camera.conf /etc/modprobe.d/
+sudo cp -i system/etc/mkinitcpio.conf.d/omarchy_hooks.conf /etc/mkinitcpio.conf.d/
+sudo cp -i system/boot/limine.conf /boot/
+sudo cp -i system/usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/omarchy/
+```
+
+Wallpapers in `extras/backgrounds/` are also copy-only: `cp -r extras/backgrounds/catpuccin-dark/. ~/Wallpapers/`
+
 ## :file_folder: Layout
 
-| Path                    | Typical destination               |
-| ----------------------- | --------------------------------- |
-| `hypr/`                 | `~/.config/hypr/`                 |
-| `waybar/`               | `~/.config/waybar/`               |
-| `kitty/`                | `~/.config/kitty/`                |
-| `starship.toml`         | `~/.config/starship.toml`         |
-| `gtk.css`               | `~/.config/gtk-x.0/gtk.css`       |
-| `fastfetch/`            | `~/.config/fastfetch/`            |
-| `btop/`                 | `~/.config/btop/`                 |
-| `swayosd/`              | `~/.config/swayosd/`              |
-| `cava/`                 | `~/.config/cava/`                 |
-| `cliamp/`               | `~/.config/cliamp/`               |
-| `git/`                  | `~/.config/git/`                  |
-| `lazygit/`              | `~/.config/lazygit/`              |
-| `imv/`                  | `~/.config/imv/`                  |
-| `mpv/`                  | `~/.config/mpv/`                  |
-| `brave-flags.conf`      | `~/.config/brave-flags.conf`      |
-| `gamemode.ini`          | `~/.config/gamemode.ini`          |
-| `gpu_usage_waybar.toml` | `~/.config/gpu_usage_waybar.toml` |
-| `.bashrc`               | `~/.bashrc`                       |
-| `.local/bin/`           | `~/.local/bin/`                   |
-| `omarchy/`              | `~/.config/omarchy/`              |
-| `omarchy-custom/`       | `~/.config/omarchy-custom/`       |
-| `elephant/`             | `~/.config/elephant/`             |
-| `systemd/`              | `~/.config/systemd/user/`         |
-| `extras/backgrounds/`   | `~/Wallpapers`                    |
-| `windows/`              | `~/.config/windows/`              |
-| `boot/`                 | `/boot/`                          |
-| `etc/`                  | `/etc/`                           |
-| `usr/`                  | `/usr/`                           |
+| Path                | Destination                                   |
+| ------------------- | --------------------------------------------- |
+| `hypr/`             | `~/.config/hypr/`                             |
+| `waybar/`           | `~/.config/waybar/`                           |
+| `kitty/`            | `~/.config/kitty/`                            |
+| `starship/`         | `~/.config/starship.toml`                     |
+| `gtk/`              | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/` |
+| `fastfetch/`        | `~/.config/fastfetch/`                        |
+| `btop/`             | `~/.config/btop/`                             |
+| `swayosd/`          | `~/.config/swayosd/`                          |
+| `cava/`             | `~/.config/cava/`                             |
+| `cliamp/`           | `~/.config/cliamp/`                           |
+| `git/`              | `~/.config/git/`                              |
+| `lazygit/`          | `~/.config/lazygit/`                          |
+| `imv/`              | `~/.config/imv/`                              |
+| `mpv/`              | `~/.config/mpv/`                              |
+| `brave/`            | `~/.config/brave-flags.conf`                  |
+| `gamemode/`         | `~/.config/gamemode.ini`                      |
+| `gpu_usage_waybar/` | `~/.config/gpu_usage_waybar.toml`             |
+| `bash/`             | `~/.bashrc`                                   |
+| `local/`            | `~/.local/`                                   |
+| `omarchy/`          | `~/.config/omarchy/`                          |
+| `omarchy-custom/`   | `~/.config/omarchy-custom/`                   |
+| `elephant/`         | `~/.config/elephant/`                         |
+| `systemd/`          | `~/.config/systemd/`                          |
+| `windows/`          | `~/.config/windows/`                          |
+| `extras/`           | `~/Wallpapers` (copy, not Stow)               |
+| `system/`           | `/boot/`, `/etc/`, `/usr/` (copy, not Stow)   |
 
 ## :pray: Credits
 
