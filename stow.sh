@@ -44,7 +44,7 @@ for arg in "$@"; do
       exit 1
       ;;
     extras)
-      echo "Refusing to stow 'extras'. Copy wallpapers into ~/Wallpapers if you want them." >&2
+      echo "Refusing to stow 'extras'. Copy wallpapers into ~/.config/omarchy/backgrounds/<current-theme>/ if you want them." >&2
       exit 1
       ;;
     *) packages+=("$arg") ;;

@@ -86,7 +86,11 @@ sudo cp -i system/boot/limine.conf /boot/
 sudo cp -i system/usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/omarchy/
 ```
 
-Wallpapers in `extras/backgrounds/` are also copy-only: `cp -r extras/backgrounds/catpuccin-dark/. ~/Wallpapers/`
+Wallpapers in `extras/backgrounds/` are also copy-only. Copy them into the backgrounds folder for your **current Omarchy theme** (that directory name matches the active wallpaper/theme):
+
+```bash
+cp -r extras/backgrounds/catpuccin-dark/. ~/.config/omarchy/backgrounds/<current-theme>/
+```
 
 ## :file_folder: Layout
 
@@ -116,7 +120,7 @@ Wallpapers in `extras/backgrounds/` are also copy-only: `cp -r extras/background
 | `elephant/`         | `~/.config/elephant/`                         |
 | `systemd/`          | `~/.config/systemd/`                          |
 | `windows/`          | `~/.config/windows/`                          |
-| `extras/`           | `~/Wallpapers` (copy, not Stow)               |
+| `extras/`           | `~/.config/omarchy/backgrounds/<current-theme>/` (copy, not Stow) |
 | `system/`           | `/boot/`, `/etc/`, `/usr/` (copy, not Stow)   |
 
 ## :pray: Credits
