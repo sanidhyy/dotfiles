@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Restore brightness, night light, and the laptop panel, then fullscreen Steam Big Picture.
+
+STATE="${XDG_RUNTIME_DIR:-/tmp}/gamemode.env"
+[[ -f $STATE ]] || exit 0
+source "$STATE"
+rm -f "$STATE"
+
+omarchy-hyprland-monitor-internal on || true
+[[ -n $ext && $brightness =~ ^[0-9]+$ ]] &&
+  omarchy brightness display --no-osd --monitor "$ext" "${brightness}%"
+[[ $night_was_on == true ]] && omarchy toggle nightlight
+~/.local/bin/steam-fullscreen-fix

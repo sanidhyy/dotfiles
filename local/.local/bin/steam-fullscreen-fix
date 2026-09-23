@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Fix Steam Big Picture Mode not being fullscreen.
+
+if hyprctl clients -j | jq -e 'any(.[]; .title == "Steam Big Picture Mode")' >/dev/null; then
+  hyprctl dispatch "hl.dsp.focus({ window = 'title:^Steam Big Picture Mode$' })"
+  hyprctl dispatch "hl.dsp.window.fullscreen({ mode = 'fullscreen', action = 'set' })"
+fi

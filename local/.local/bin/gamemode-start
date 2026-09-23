@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Max external brightness, turn night light off, and disable the laptop panel.
+
+STATE="${XDG_RUNTIME_DIR:-/tmp}/gamemode.env"
+[[ -f $STATE ]] && exit 0
+
+ext=$(hyprctl monitors -j | jq -r '
+  .[] | select(.disabled == false)
+  | select(.name | test("^(eDP|LVDS|DSI)-") | not)
+  | .name' | head -n1)
+
+brightness=$(omarchy brightness display --no-osd --monitor "$ext")
+night=$(omarchy toggle nightlight --status)
+
+[[ -n $ext ]] && omarchy brightness display --no-osd --monitor "$ext" 100%
+[[ $(jq -r .enabled <<<"$night") == true ]] && omarchy toggle nightlight
+omarchy-hyprland-monitor-internal off || true
+
+cat >"$STATE" <<EOF
+ext=$ext
+brightness=$brightness
+night_was_on=$(jq -r .enabled <<<"$night")
+EOF
