@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "idle": {
+    "screensaver": 150,
+    "lock": 300
+  },
+  "bar": {
+    "position": "top",
+    "transparent": false,
+    "centerAnchor": "omarchy.clock",
+    "layout": {
+      "left": [
+        {
+          "id": "omarchy.menu"
+        },
+        {
+          "id": "sanidhyy.workspaces"
+        }
+      ],
+      "center": [
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "omarchy.clock",
+          "birthYear": 2005,
+          "format": "dddd HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "lifeExpectancy": 75,
+          "verticalFormat": "HH\n—\nmm"
+        },
+        {
+          "id": "omarchy.weather"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "sanidhyy.audio"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.power",
+          "showPercentage": false
+        }
+      ]
+    }
+  },
+  "plugins": [
+    {
+      "id": "sanidhyy.lock"
+    }
+  ],
+  "disabledPlugins": [
+    "omarchy.lock",
+    "omarchy.polkit"
+  ],
+  "cloneSourceRestores": [
+    "sanidhyy.lock"
+  ]
+}
