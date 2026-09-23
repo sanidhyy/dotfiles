@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Fix Steam Big Picture Mode not being fullscreen.
-
-hyprctl dispatch focuswindow "title:^Steam Big Picture Mode$"
-hyprctl dispatch fullscreen 0

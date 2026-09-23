@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Starting manual emergency backup to Google Drive..."
-rclone copy ~/Documents gdrive:Documents --progress
-echo "Backup complete!"
