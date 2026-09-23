@@ -3,7 +3,9 @@
   "logo": {
     "type": "file",
     "source": "~/.config/omarchy/branding/about.txt",
-    "color": { "1": "blue" },
+    "color": {
+      "1": "blue"
+    },
     "padding": {
       "top": 2,
       "right": 6,
