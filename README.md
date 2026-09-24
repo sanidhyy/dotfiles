@@ -2,7 +2,7 @@
 
 My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme "😺 Catppuccin Mocha Theme for Omarchy") for [Omarchy Quattro](https://omarchy.org "Omarchy by DHH")
 
-![Desktop Preview](/.github/images/img1.png "Desktop Preview")
+![Desktop Preview](/.github/images/desktop.png "Desktop Preview")
 
 ## :sparkles: Tweaks
 
@@ -21,13 +21,13 @@ My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https
 
 ## :camera_flash: Preview
 
-![VS Code · LazyVim · Cliamp](/.github/images/img2.png "VS Code · LazyVim · Cliamp")
+![Btop · LazyVim · Nautilius](/.github/images/desktop.png "Btop · LazyVim · Nautilius")
 
-![LazyVim · Chromium · Walker](/.github/images/img3.png "LazyVim · Chromium · Walker")
+![Foot · Chromium · VSCode](/.github/images/desktop-2.png "Foot · Chromium · VSCode")
 
-![Hyprlock Preview](/.github/images/img4.png "Hyprlock Preview")
+![Lock Screen Preview](/.github/images/lock-screen.png "Lock Screen Preview")
 
-![Unlock Preview](/.github/images/img5.png "Unlock Preview")
+![Unlock Preview](/.github/images/unlock.png "Unlock Preview")
 
 ## :package: Using Stow
 
