@@ -15,7 +15,7 @@ My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https
 - :framed_picture: Extra **backgrounds** for the Catppuccin Mocha wallpaper set.
 - :lock: **Limine** boot and **SDDM** login style configurations.
 - :film_projector: **imv** image viewer and **mpv** player configs.
-- :globe_with_meridians: **Brave Origin** flags plus **Git** and **Lazygit** configs.
+- :globe_with_meridians: **Brave Origin** flags plus **Lazygit** configs.
 - :joystick: **Gamemode** and Steam Big Picture helpers, plus **WirePlumber** device rules.
 - :wrench: **Fastfetch**, **mise**, and NVIDIA shader-cache environment settings.
 
@@ -54,7 +54,7 @@ stow hypr starship foot
 ./stow.sh
 ```
 
-> > > :warning: Do not run `stow *` — that would also pick up `.github/`, `.gitignore`, `README.md` and other unwanted files.
+> :warning: Do not run `stow *` — that would also pick up `.github/`, `.gitignore`, `README.md` and other unwanted files.
 
 **Update or remove**
 
@@ -91,7 +91,6 @@ sudo limine-snapper-sync
 | `fastfetch/`    | `~/.config/fastfetch/`                            |
 | `foot/`         | `~/.config/foot/`                                 |
 | `gamemode/`     | `~/.config/gamemode.ini`                          |
-| `git/`          | `~/.config/git/`                                  |
 | `gtk/`          | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/`     |
 | `hypr/`         | `~/.config/hypr/`                                 |
 | `imv/`          | `~/.config/imv/`                                  |

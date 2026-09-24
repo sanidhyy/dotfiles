@@ -9,7 +9,6 @@ stow \
   fastfetch \
   foot \
   gamemode \
-  git \
   gtk \
   hypr \
   imv \
