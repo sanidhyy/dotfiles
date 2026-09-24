@@ -10,6 +10,7 @@ My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https
 - :desktop_computer: **Hyprland** dual-monitor layout, custom binds, night light, and look-and-feel overrides.
 - :lollipop: Omarchy **shell** bar with custom workspace, audio, and lock plugins.
 - :computer: **Foot** terminal cursor and keybinding tweaks.
+- :ledger: **Neovim** neo-tree shows hidden and gitignored files.
 - :rocket: Catppuccin-styled **Starship** prompt and **Bash** aliases.
 - :art: **GTK** 3.0 and 4.0 styles for Catppuccin Mocha.
 - :framed_picture: Extra **backgrounds** for the Catppuccin Mocha wallpaper set.
@@ -21,7 +22,7 @@ My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https
 
 ## :camera_flash: Preview
 
-![Btop · LazyVim · Nautilius](/.github/images/desktop.png "Btop · LazyVim · Nautilius")
+![Btop · LazyVim · Nautilus](/.github/images/desktop.png "Btop · LazyVim · Nautilus")
 
 ![Foot · Chromium · VSCode](/.github/images/desktop-2.png "Foot · Chromium · VSCode")
 
@@ -98,6 +99,7 @@ sudo limine-snapper-sync
 | `local/`        | `~/.local/`                                       |
 | `mise/`         | `~/.config/mise/`                                 |
 | `mpv/`          | `~/.config/mpv/`                                  |
+| `nvim/`         | `~/.config/nvim/`                                 |
 | `omarchy/`      | `~/.config/omarchy/`                              |
 | `starship/`     | `~/.config/starship.toml`                         |
 | `wireplumber/`  | `~/.config/wireplumber/`                          |

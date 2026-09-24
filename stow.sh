@@ -16,6 +16,7 @@ stow \
   local \
   mise \
   mpv \
+  nvim \
   omarchy \
   starship \
   wireplumber
