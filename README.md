@@ -7,17 +7,17 @@ My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](http
 ## :sparkles: Tweaks
 
 - :zap: Based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme "😺 Catppuccin Mocha Theme for Omarchy").
-- :desktop_computer: **Hyprland** window manager with OMARCHY-aligned tweaks for dual monitor setup.
-- :lollipop: Catppuccin-styled **Waybar** with privacy dots, cava player, etc...
-- :memo: **Kitty** terminal colors and settings configurations.
-- :framed_picture: Custom **Elephant** Live Wallpaper picker menu.
-- :rocket: **Starship** shell prompt styling.
+- :desktop_computer: **Hyprland** dual-monitor layout, custom binds, night light, and look-and-feel overrides.
+- :lollipop: Omarchy **shell** bar with custom workspace, audio, and lock plugins.
+- :computer: **Foot** terminal cursor and keybinding tweaks.
+- :rocket: Catppuccin-styled **Starship** prompt and **Bash** aliases.
 - :art: **GTK** 3.0 and 4.0 styles for Catppuccin Mocha.
+- :framed_picture: Extra **backgrounds** for the Catppuccin Mocha wallpaper set.
 - :lock: **Limine** boot and **SDDM** login style configurations.
-- :notes: **Cava** visualizer (Catppuccin Mocha theme) and **Cliamp** player config.
 - :film_projector: **imv** image viewer and **mpv** player configs.
-- :globe_with_meridians: **Brave** flags plus **Git** and **Lazygit** configs.
-- :wrench: Configurations for **Btop**, **Fastfetch**, **SwayOSD**, etc...
+- :globe_with_meridians: **Brave Origin** flags plus **Git** and **Lazygit** configs.
+- :joystick: **Gamemode** and Steam Big Picture helpers, plus **WirePlumber** device rules.
+- :wrench: **Fastfetch**, **mise**, and NVIDIA shader-cache environment settings.
 
 ## :camera_flash: Preview
 
@@ -90,33 +90,27 @@ sudo cp system/usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/oma
 
 ## :file_folder: Layout
 
-| Path                | Destination                                       |
-| ------------------- | ------------------------------------------------- |
-| `hypr/`             | `~/.config/hypr/`                                 |
-| `waybar/`           | `~/.config/waybar/`                               |
-| `kitty/`            | `~/.config/kitty/`                                |
-| `starship/`         | `~/.config/starship.toml`                         |
-| `gtk/`              | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/`     |
-| `fastfetch/`        | `~/.config/fastfetch/`                            |
-| `btop/`             | `~/.config/btop/`                                 |
-| `swayosd/`          | `~/.config/swayosd/`                              |
-| `cava/`             | `~/.config/cava/`                                 |
-| `cliamp/`           | `~/.config/cliamp/`                               |
-| `git/`              | `~/.config/git/`                                  |
-| `lazygit/`          | `~/.config/lazygit/`                              |
-| `imv/`              | `~/.config/imv/`                                  |
-| `mpv/`              | `~/.config/mpv/`                                  |
-| `brave/`            | `~/.config/brave-flags.conf`                      |
-| `gamemode/`         | `~/.config/gamemode.ini`                          |
-| `gpu_usage_waybar/` | `~/.config/gpu_usage_waybar.toml`                 |
-| `bash/`             | `~/.bashrc`                                       |
-| `local/`            | `~/.local/`                                       |
-| `omarchy/`          | `~/.config/omarchy/`                              |
-| `omarchy-custom/`   | `~/.config/omarchy-custom/`                       |
-| `elephant/`         | `~/.config/elephant/`                             |
-| `systemd/`          | `~/.config/systemd/`                              |
-| `backgrounds/`      | `~/.config/omarchy/backgrounds/catppuccin-mocha/` |
-| `system/`           | `/boot/`, `/usr/` (copy, not Stow)                |
+| Path             | Destination                                       |
+| ---------------- | ------------------------------------------------- |
+| `backgrounds/`   | `~/.config/omarchy/backgrounds/catppuccin-mocha/` |
+| `bash/`          | `~/.bashrc`                                       |
+| `brave-origin/`  | `~/.config/brave-origin-flags.conf`               |
+| `environment/`   | `~/.config/environment.d/`                        |
+| `fastfetch/`     | `~/.config/fastfetch/`                            |
+| `foot/`          | `~/.config/foot/`                                 |
+| `gamemode/`      | `~/.config/gamemode.ini`                          |
+| `git/`           | `~/.config/git/`                                  |
+| `gtk/`           | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/`     |
+| `hypr/`          | `~/.config/hypr/`                                 |
+| `imv/`           | `~/.config/imv/`                                  |
+| `lazygit/`       | `~/.config/lazygit/`                              |
+| `local/`         | `~/.local/`                                       |
+| `mise/`          | `~/.config/mise/`                                 |
+| `mpv/`           | `~/.config/mpv/`                                  |
+| `omarchy/`       | `~/.config/omarchy/`                              |
+| `starship/`      | `~/.config/starship.toml`                         |
+| `wireplumber/`   | `~/.config/wireplumber/`                          |
+| `system/`        | `/boot/`, `/usr/` (copy, not Stow)                |
 
 ## :pray: Credits
 
