@@ -1,6 +1,6 @@
 # :house: My Omarchy Dotfiles
 
-My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme "😺 Catppuccin Mocha Theme for Omarchy"), for [Omarchy Quattro](https://omarchy.org "Omarchy by DHH")
+My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme "😺 Catppuccin Mocha Theme for Omarchy") for [Omarchy Quattro](https://omarchy.org "Omarchy by DHH")
 
 ![Desktop Preview](/.github/images/img1.png "Desktop Preview")
 
@@ -34,15 +34,7 @@ My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](http
 You can use [GNU Stow](https://www.gnu.org/software/stow/) to easily manage your dotfiles.
 
 ```bash
-# Arch Linux
-sudo pacman -S stow
-
-# Debian / Ubuntu
-sudo apt install stow
-
-# Fedora
-sudo dnf install stow
-
+omarchy pkg add stow
 git clone https://github.com/sanidhyy/dotfiles.git
 cd dotfiles
 ```
@@ -82,6 +74,10 @@ sudo cp /usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/omarchy/M
 # copy new files
 sudo cp system/boot/limine.conf /boot/limine.conf
 sudo cp system/usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/omarchy/Main.qml
+
+# regenerate limine entries
+sudo limine-update
+sudo limine-snapper-sync
 ```
 
 ## :file_folder: Layout
