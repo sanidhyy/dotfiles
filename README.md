@@ -1,6 +1,6 @@
-# :house: Dotfiles — OMARCHY Setup
+# :house: My Omarchy Dotfiles
 
-My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme "😺 Catppuccin Mocha Theme for Omarchy"), designed around [Omarchy](https://omarchy.org "Omarchy by DHH")
+My Personal dotfiles and configuration scripts, based on [Catppuccin Mocha](https://github.com/sanidhyy/omarchy-catppuccin-mocha-theme "😺 Catppuccin Mocha Theme for Omarchy"), for [Omarchy Quattro](https://omarchy.org "Omarchy by DHH")
 
 ![Desktop Preview](/.github/images/img1.png "Desktop Preview")
 
@@ -49,21 +49,21 @@ cd dotfiles
 
 Run Stow from the repo root.
 
-**One or several packages**
+**One or several folders**
 
 ```bash
 stow hypr
-stow hypr waybar kitty
-./stow.sh hypr waybar
+stow hypr starship foot
+./stow.sh hypr fastfetch
 ```
 
-**Every user package**
+**All dotfiles**
 
 ```bash
 ./stow.sh
 ```
 
-Do not run `stow *` — that would also pick up `system/`, `extras/`, `windows/`, and other non-package directories.
+> > > :warning: Do not run `stow *` — that would also pick up `.github/`, `.gitignore`, `README.md` and other unwanted files.
 
 **Update or remove**
 
@@ -76,65 +76,57 @@ stow -D hypr          # unstow one package
 ./stow.sh -h          # script help
 ```
 
-**System files are not Stow packages.** Copy them (do not symlink). Bootloaders and SDDM often will not follow symlinks under `/boot` or `/usr`.
+**Manually copy System files.** Copy them (do not symlink).
 
 ```bash
-sudo cp -i system/etc/sddm.conf.d/numlock.conf /etc/sddm.conf.d/
-sudo cp -i system/etc/modprobe.d/blacklist-camera.conf /etc/modprobe.d/
-sudo cp -i system/etc/mkinitcpio.conf.d/omarchy_hooks.conf /etc/mkinitcpio.conf.d/
-sudo cp -i system/boot/limine.conf /boot/
-sudo cp -i system/usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/omarchy/
+# backup old files
+sudo cp /boot/limine.conf /boot/limine.conf.bak
+sudo cp /usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/omarchy/Main.qml.bak
+
+# copy new files
+sudo cp system/boot/limine.conf /boot/limine.conf
+sudo cp system/usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/omarchy/Main.qml
 ```
-
-Wallpapers in `extras/backgrounds/` are also copy-only. Copy them into the backgrounds folder for your **current Omarchy theme** (that directory name matches the active wallpaper/theme):
-
-```bash
-cp -r extras/backgrounds/catpuccin-dark/. ~/.config/omarchy/backgrounds/<current-theme>/
-```
-
-**Windows VM compose is not a Stow package.** Leave `~/.config/windows/docker-compose.yml` as a local file so usernames and passwords stay off git. Use the copy in `windows/` as a template only.
 
 ## :file_folder: Layout
 
-| Path                | Destination                                   |
-| ------------------- | --------------------------------------------- |
-| `hypr/`             | `~/.config/hypr/`                             |
-| `waybar/`           | `~/.config/waybar/`                           |
-| `kitty/`            | `~/.config/kitty/`                            |
-| `starship/`         | `~/.config/starship.toml`                     |
-| `gtk/`              | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/` |
-| `fastfetch/`        | `~/.config/fastfetch/`                        |
-| `btop/`             | `~/.config/btop/`                             |
-| `swayosd/`          | `~/.config/swayosd/`                          |
-| `cava/`             | `~/.config/cava/`                             |
-| `cliamp/`           | `~/.config/cliamp/`                           |
-| `git/`              | `~/.config/git/`                              |
-| `lazygit/`          | `~/.config/lazygit/`                          |
-| `imv/`              | `~/.config/imv/`                              |
-| `mpv/`              | `~/.config/mpv/`                              |
-| `brave/`            | `~/.config/brave-flags.conf`                  |
-| `gamemode/`         | `~/.config/gamemode.ini`                      |
-| `gpu_usage_waybar/` | `~/.config/gpu_usage_waybar.toml`             |
-| `bash/`             | `~/.bashrc`                                   |
-| `local/`            | `~/.local/`                                   |
-| `omarchy/`          | `~/.config/omarchy/`                          |
-| `omarchy-custom/`   | `~/.config/omarchy-custom/`                   |
-| `elephant/`         | `~/.config/elephant/`                         |
-| `systemd/`          | `~/.config/systemd/`                          |
-| `windows/`          | `~/.config/windows/` (copy template, not Stow) |
-| `extras/`           | `~/.config/omarchy/backgrounds/<current-theme>/` (copy, not Stow) |
-| `system/`           | `/boot/`, `/etc/`, `/usr/` (copy, not Stow)   |
+| Path                | Destination                                       |
+| ------------------- | ------------------------------------------------- |
+| `hypr/`             | `~/.config/hypr/`                                 |
+| `waybar/`           | `~/.config/waybar/`                               |
+| `kitty/`            | `~/.config/kitty/`                                |
+| `starship/`         | `~/.config/starship.toml`                         |
+| `gtk/`              | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/`     |
+| `fastfetch/`        | `~/.config/fastfetch/`                            |
+| `btop/`             | `~/.config/btop/`                                 |
+| `swayosd/`          | `~/.config/swayosd/`                              |
+| `cava/`             | `~/.config/cava/`                                 |
+| `cliamp/`           | `~/.config/cliamp/`                               |
+| `git/`              | `~/.config/git/`                                  |
+| `lazygit/`          | `~/.config/lazygit/`                              |
+| `imv/`              | `~/.config/imv/`                                  |
+| `mpv/`              | `~/.config/mpv/`                                  |
+| `brave/`            | `~/.config/brave-flags.conf`                      |
+| `gamemode/`         | `~/.config/gamemode.ini`                          |
+| `gpu_usage_waybar/` | `~/.config/gpu_usage_waybar.toml`                 |
+| `bash/`             | `~/.bashrc`                                       |
+| `local/`            | `~/.local/`                                       |
+| `omarchy/`          | `~/.config/omarchy/`                              |
+| `omarchy-custom/`   | `~/.config/omarchy-custom/`                       |
+| `elephant/`         | `~/.config/elephant/`                             |
+| `systemd/`          | `~/.config/systemd/`                              |
+| `backgrounds/`      | `~/.config/omarchy/backgrounds/catppuccin-mocha/` |
+| `system/`           | `/boot/`, `/usr/` (copy, not Stow)                |
 
 ## :pray: Credits
 
-- [DHH](https://x.com/dhh "David Heinemeier Hansson") & the Omarchy team for the excellent project.
+- [DHH](https://x.com/dhh "David Heinemeier Hansson") & [Omarchy Team](https://omarchy.org/teams "Omarchy Teams") for the excellent project.
 - [Catppuccin](https://github.com/catppuccin "Catppuccin Mocha") community for the beautiful palette and ecosystem.
 
 ## :page_facing_up: License and Third-Party Notes
 
-- This repository contains original modifications and adapted configurations from upstream projects.
 - All third-party assets (palettes, tools, wallpapers) retain their original licenses and copyrights.
-- If you are the creator of any wallpaper in the `extras/backgrounds/` folder and would like it removed or credited, please [Contact me](https://sanidhyy.name/#contact "Contact me at my email or through this form.").
+- If you are the creator of any wallpaper in the `backgrounds/` folder and would like it removed or credited, please [Contact me](https://sanidhyy.name/#contact "Contact me at my email or through this form.").
 
 ## :warning: Disclaimer
 
