@@ -1,0 +1,8 @@
+[tools]
+node = "latest"
+pnpm = "latest"
+vercel = { version = "latest", allow_builds = ["esbuild"], trust_policy_excludes = ["undici"] }
+"npm:netlify-cli" = { version = "latest", trust_policy_excludes = ["@netlify/*"] }
+
+[settings.upgrade]
+auto_prune = false
