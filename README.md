@@ -49,12 +49,11 @@ cd dotfiles
 
 Run Stow from the repo root.
 
-**One or several folders**
+**One or more files**
 
 ```bash
 stow hypr
 stow hypr starship foot
-./stow.sh hypr fastfetch
 ```
 
 **All dotfiles**
@@ -69,11 +68,8 @@ stow hypr starship foot
 
 ```bash
 stow -R hypr          # restow one package after a pull
-./stow.sh -R          # restow everything
 stow -D hypr          # unstow one package
-./stow.sh -D          # unstow everything
-./stow.sh -n          # dry-run (no links created)
-./stow.sh -h          # script help
+stow -n hypr          # dry-run (no links created)
 ```
 
 **Manually copy System files.** Copy them (do not symlink).
@@ -90,27 +86,27 @@ sudo cp system/usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/oma
 
 ## :file_folder: Layout
 
-| Path             | Destination                                       |
-| ---------------- | ------------------------------------------------- |
-| `backgrounds/`   | `~/.config/omarchy/backgrounds/catppuccin-mocha/` |
-| `bash/`          | `~/.bashrc`                                       |
-| `brave-origin/`  | `~/.config/brave-origin-flags.conf`               |
-| `environment/`   | `~/.config/environment.d/`                        |
-| `fastfetch/`     | `~/.config/fastfetch/`                            |
-| `foot/`          | `~/.config/foot/`                                 |
-| `gamemode/`      | `~/.config/gamemode.ini`                          |
-| `git/`           | `~/.config/git/`                                  |
-| `gtk/`           | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/`     |
-| `hypr/`          | `~/.config/hypr/`                                 |
-| `imv/`           | `~/.config/imv/`                                  |
-| `lazygit/`       | `~/.config/lazygit/`                              |
-| `local/`         | `~/.local/`                                       |
-| `mise/`          | `~/.config/mise/`                                 |
-| `mpv/`           | `~/.config/mpv/`                                  |
-| `omarchy/`       | `~/.config/omarchy/`                              |
-| `starship/`      | `~/.config/starship.toml`                         |
-| `wireplumber/`   | `~/.config/wireplumber/`                          |
-| `system/`        | `/boot/`, `/usr/` (copy, not Stow)                |
+| Path            | Destination                                       |
+| --------------- | ------------------------------------------------- |
+| `backgrounds/`  | `~/.config/omarchy/backgrounds/catppuccin-mocha/` |
+| `bash/`         | `~/.bashrc`                                       |
+| `brave-origin/` | `~/.config/brave-origin-flags.conf`               |
+| `environment/`  | `~/.config/environment.d/`                        |
+| `fastfetch/`    | `~/.config/fastfetch/`                            |
+| `foot/`         | `~/.config/foot/`                                 |
+| `gamemode/`     | `~/.config/gamemode.ini`                          |
+| `git/`          | `~/.config/git/`                                  |
+| `gtk/`          | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/`     |
+| `hypr/`         | `~/.config/hypr/`                                 |
+| `imv/`          | `~/.config/imv/`                                  |
+| `lazygit/`      | `~/.config/lazygit/`                              |
+| `local/`        | `~/.local/`                                       |
+| `mise/`         | `~/.config/mise/`                                 |
+| `mpv/`          | `~/.config/mpv/`                                  |
+| `omarchy/`      | `~/.config/omarchy/`                              |
+| `starship/`     | `~/.config/starship.toml`                         |
+| `wireplumber/`  | `~/.config/wireplumber/`                          |
+| `system/`       | `/boot/`, `/usr/` (copy, not Stow)                |
 
 ## :pray: Credits
 
