@@ -482,6 +482,7 @@ Item {
   onAuthenticatingPasswordChanged: {
     if (!lockRequested) return
     if (authenticatingPassword) idleBlankTimer.stop()
+    else armBlankTimer()
   }
 
   FileView {

@@ -1,8 +1,7 @@
 import QtQuick
-import QtQuick.Effects
 import Quickshell
+import Quickshell.Io
 import qs.Commons
-import qs.Ui
 
 Item {
   id: root
@@ -18,31 +17,16 @@ Item {
   property string passwordText: ""
   property bool syncingPasswordText: false
   property bool displaysBlank: false
+  property string kernel: ""
+  property string hostName: Quickshell.env("HOSTNAME") || Quickshell.env("HOST") || "omarchy"
 
-  readonly property string placeholderText: "Enter Password"
-  readonly property int fieldWidth: 381
-  readonly property int fieldHeight: 67
-  readonly property int outlineThickness: 3
-  readonly property int fieldFontSize: Math.round(Style.font.heading * 1.125)
-  readonly property int passwordDotFontSize: Math.round(Style.font.heading * 1.33)
-  readonly property int passwordDotLetterSpacing: Math.round(Style.font.heading * 0.19)
-  readonly property int timeFontSize: Math.round(Style.font.displayLarge * 3.5)
-  readonly property int dateFontSize: Style.font.heading
-  readonly property int hintFontSize: Style.font.body
-  readonly property int hintBottomMargin: Math.max(24, Math.round(Style.gapsOut * 8))
-  // Space to keep clear on each side of the field for the fingerprint icon
-  // (icon width plus a gap) so the centered dots never run under it.
-  readonly property real fingerprintReserve: fingerprintConfigured ? Math.round(fingerprintIcon.implicitWidth + 12) : 0
-  // Shrink the dots to fit once the password outgrows the field, so every
-  // keystroke stays visible — otherwise long passwords clip with no feedback.
-  readonly property real passwordDotScale: dotMetrics.advanceWidth > 0
-    ? Math.min(1, (passwordInput.width - 4) / dotMetrics.advanceWidth)
-    : 1
-  readonly property bool showPasswordCursor: inputEnabled && !authenticatingPassword && failureMessage.length === 0
+  readonly property string userName: Quickshell.env("USER") || Quickshell.env("LOGNAME") || "user"
+  readonly property real u: Math.min(width, height) / 100
+  readonly property int fs: Math.round(root.u * 2.1)
+  readonly property int hintFontSize: Math.round(root.u * 1.25)
+  readonly property color ink: Color.foreground
+  readonly property color dim: Util.alpha(Color.foreground, 0.5)
   readonly property bool errorState: failureMessage.length > 0
-  readonly property var inputBorderSpec: errorState
-    ? Border.surfaceSpec("lock", "border-error", Color.lock.borderError, root.outlineThickness, "border-alpha")
-    : Border.surfaceSpec("lock", "border-active", Color.lock.borderActive, root.outlineThickness, "border-alpha")
   readonly property var lockHints: [
     { chord: "Super+Esc", label: "Display off" },
     { chord: "Super+R", label: "Reboot" },
@@ -54,9 +38,8 @@ Item {
   signal clearFailureRequested()
   signal wakeRequested()
 
-  // Cache-busts the lock background by appending `?v=`. Adding a query
-  // string keeps Image's loader happy while forcing it to reload when the
-  // user picks a new background mid-session.
+  // Cache-busts a local image by appending `?v=`. Unused by this TTY view,
+  // but kept so the service contract for backgrounds stays intact.
   function fileUrl(path) {
     if (!path) return ""
     var encoded = String(path).split("/").map(encodeURIComponent).join("/")
@@ -64,7 +47,7 @@ Item {
   }
 
   function forcePasswordFocus() {
-    passwordInput.forceActiveFocus()
+    if (inputEnabled) passwordInput.forceActiveFocus()
   }
 
   function clearPassword() {
@@ -90,46 +73,37 @@ Item {
     if (inputEnabled) Qt.callLater(forcePasswordFocus)
   }
 
-  SystemClock {
-    id: clock
-    precision: SystemClock.Minutes
+  FileView {
+    path: "/etc/hostname"
+    printErrors: false
+    onLoaded: {
+      var name = String(text() || "").trim()
+      if (name.length > 0) root.hostName = name
+    }
   }
 
-  // Measures the masked password at full size; passwordDotScale compares this
-  // against the field width to decide how far the dots must shrink to fit.
-  TextMetrics {
-    id: dotMetrics
+  FileView {
+    path: "/proc/sys/kernel/osrelease"
+    printErrors: false
+    onLoaded: root.kernel = String(text() || "").trim()
+  }
+
+  SystemClock {
+    id: clock
+    precision: SystemClock.Seconds
+  }
+
+  component Line: Text {
     font.family: Style.font.family
-    font.pixelSize: root.passwordDotFontSize
-    font.letterSpacing: root.passwordDotLetterSpacing
-    text: "●".repeat(passwordInput.text.length)
+    font.pixelSize: root.fs
+    color: root.ink
+    textFormat: Text.PlainText
+    lineHeight: 1.3
   }
 
   Rectangle {
     anchors.fill: parent
     color: Color.background
-
-    Image {
-      id: wallpaper
-      anchors.fill: parent
-      source: root.loadBackground ? root.fileUrl(root.backgroundPath) : ""
-      fillMode: Image.PreserveAspectCrop
-      asynchronous: true
-      cache: false
-      sourceSize.width: width
-      sourceSize.height: height
-    }
-
-    MultiEffect {
-      anchors.fill: wallpaper
-      source: wallpaper
-      autoPaddingEnabled: false
-      blurEnabled: root.loadBackground && wallpaper.status === Image.Ready
-      blur: 1.0
-      blurMax: 128
-      blurMultiplier: 1.25
-      contrast: -0.08
-    }
 
     MouseArea {
       anchors.fill: parent
@@ -139,151 +113,108 @@ Item {
     }
 
     Column {
-      anchors.centerIn: parent
-      spacing: Math.round(Style.font.displayLarge * 2.25)
+      anchors.left: parent.left
+      anchors.top: parent.top
+      anchors.margins: Math.round(root.u * 5)
+      spacing: 0
 
-      Column {
-        spacing: Math.round(Style.font.body * 0.25)
-        anchors.horizontalCenter: parent.horizontalCenter
+      Line { text: "Omarchy Linux " + root.kernel + " (tty1)" }
+      Line { text: Qt.formatDateTime(clock.date, "ddd MMM d HH:mm:ss yyyy") }
+      Line { text: " " }
 
-        Text {
-          anchors.horizontalCenter: parent.horizontalCenter
-          text: Qt.formatTime(clock.date, "HH:mm")
-          color: Color.lock.text
-          font.family: Style.font.family
-          font.pixelSize: root.timeFontSize
-          font.weight: Font.Normal
-          font.letterSpacing: 2
-          horizontalAlignment: Text.AlignHCenter
-        }
-
-        Text {
-          anchors.horizontalCenter: parent.horizontalCenter
-          text: Qt.formatDate(clock.date, "dddd, MMMM d")
-          color: Util.alpha(Color.lock.text, 0.78)
-          font.family: Style.font.family
-          font.pixelSize: root.dateFontSize
-          horizontalAlignment: Text.AlignHCenter
+      // Every wrong attempt leaves its trace, up to three, then the prompt
+      // comes back.
+      Repeater {
+        model: Math.min(root.failedAttempts, 3)
+        delegate: Column {
+          Line { text: root.hostName + " login: " + root.userName }
+          Line { text: "Password: " }
+          Line { text: " " }
+          Line { text: "Login incorrect"; color: Color.lock.textError }
+          Line { text: " " }
         }
       }
 
-      BorderSurface {
-        id: inputField
-        width: root.fieldWidth
-        height: root.fieldHeight
-        anchors.horizontalCenter: parent.horizontalCenter
-        color: Color.lock.background
-        borderSpec: root.inputBorderSpec
-        radius: Style.cornerRadius
-        clip: true
-
-        TextInput {
-          id: passwordInput
-          anchors.fill: parent
-          anchors.topMargin: inputField.borderTop
-          // Reserve the fingerprint icon's width on both sides so the centered
-          // dots stay symmetric and never slide under the icon as they grow.
-          anchors.rightMargin: inputField.borderRight + 18 + root.fingerprintReserve
-          anchors.bottomMargin: inputField.borderBottom
-          anchors.leftMargin: inputField.borderLeft + 18 + root.fingerprintReserve
-          verticalAlignment: TextInput.AlignVCenter
-          horizontalAlignment: TextInput.AlignHCenter
-          activeFocusOnPress: true
-          clip: true
-          enabled: root.inputEnabled && !root.authenticatingPassword && !root.displaysBlank
-          readOnly: root.authenticatingPassword || root.displaysBlank
-          echoMode: TextInput.Password
-          passwordCharacter: "\u25CF"
-          passwordMaskDelay: 0
-          color: Color.lock.text
-          selectionColor: Color.lock.selection
-          selectedTextColor: Color.lock.text
-          font.family: Style.font.family
-          font.pixelSize: text.length > 0 ? Math.max(1, Math.floor(root.passwordDotFontSize * root.passwordDotScale)) : root.fieldFontSize
-          font.letterSpacing: text.length > 0 ? root.passwordDotLetterSpacing * root.passwordDotScale : 0
-          cursorVisible: false
-          cursorDelegate: Item {}
-          onTextChanged: {
-            if (!root.syncingPasswordText) root.passwordTextEdited(text)
-            if (text.length > 0 && root.failureMessage.length > 0) root.clearFailureRequested()
-          }
-
-          onAccepted: {
-            var submitted = root.passwordText
-            root.passwordTextEdited("")
-            if (submitted.length > 0) root.submitPassword(submitted)
-          }
-
-          Keys.onPressed: function(event) {
-            if (event.key === Qt.Key_Escape || (event.modifiers & Qt.ControlModifier && event.key === Qt.Key_U)) {
-              root.passwordTextEdited("")
-              event.accepted = true
-            }
-          }
-        }
-
-        Text {
-          textFormat: Text.PlainText
-          anchors.fill: passwordInput
-          text: root.authenticatingPassword ? "Checking…" : (root.failureMessage.length > 0 ? root.failureMessage : root.placeholderText)
-          visible: passwordInput.text.length === 0
-          color: root.authenticatingPassword ? Color.lock.text : (root.failureMessage.length > 0 ? Color.lock.textError : Color.lock.placeholder)
-          font.family: Style.font.family
-          font.pixelSize: root.fieldFontSize
-          font.italic: !root.authenticatingPassword && root.failureMessage.length > 0
-          horizontalAlignment: Text.AlignHCenter
-          verticalAlignment: Text.AlignVCenter
-          elide: Text.ElideRight
-        }
-
-        // Fingerprint hint pinned inside the field's right edge when a sensor is
-        // enrolled, so the user knows they can touch to unlock instead of typing.
-        // Matches hyprlock, which draws its fingerprint icon in the same spot.
-        Text {
-          id: fingerprintIcon
-          objectName: "fingerprintIndicator"
-          anchors.right: parent.right
-          anchors.rightMargin: inputField.borderRight + 18
-          anchors.verticalCenter: parent.verticalCenter
-          visible: root.fingerprintConfigured
-          text: "󰈷"
-          color: Color.lock.placeholder
-          font.family: Style.font.family
-          font.pixelSize: Math.round(root.fieldFontSize * 1.1)
-          horizontalAlignment: Text.AlignHCenter
-          verticalAlignment: Text.AlignVCenter
-        }
+      Line { text: root.hostName + " login: " + root.userName }
+      Row {
+        Line { text: "Password: " }
+        Line { text: "●".repeat(root.passwordText.length) }
       }
     }
 
     Row {
-      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.left: parent.left
       anchors.bottom: parent.bottom
-      anchors.bottomMargin: root.hintBottomMargin
-      spacing: Math.round(Style.font.heading * 2)
+      anchors.leftMargin: Math.round(root.u * 5)
+      anchors.bottomMargin: Math.round(root.u * 5)
+      spacing: Math.round(root.hintFontSize * 2)
 
       Repeater {
         model: root.lockHints
 
         Row {
-          spacing: Math.round(Style.font.body * 0.6)
+          spacing: Math.round(root.hintFontSize * 0.6)
 
           Text {
             text: `[${modelData.chord}]`
-            color: Color.lock.text
+            color: root.ink
             font.family: Style.font.family
             font.pixelSize: root.hintFontSize
-            font.weight: Font.DemiBold
             verticalAlignment: Text.AlignVCenter
           }
 
           Text {
             text: modelData.label
-            color: Util.alpha(Color.lock.text, 0.78)
+            color: root.dim
             font.family: Style.font.family
             font.pixelSize: root.hintFontSize
             verticalAlignment: Text.AlignVCenter
           }
+        }
+      }
+    }
+
+    TextInput {
+      id: passwordInput
+      x: Math.round(root.u * 5)
+      y: Math.round(root.u * 5)
+      width: Math.round(root.u * 40)
+      height: Math.round(root.u * 3)
+      opacity: 0
+      activeFocusOnPress: true
+      clip: true
+      enabled: root.inputEnabled && !root.authenticatingPassword && !root.displaysBlank
+      readOnly: root.authenticatingPassword || root.displaysBlank
+      echoMode: TextInput.Password
+      passwordCharacter: "\u25CF"
+      passwordMaskDelay: 0
+      color: Color.lock.text
+      selectionColor: Color.lock.selection
+      selectedTextColor: Color.lock.text
+      font.family: Style.font.family
+      font.pixelSize: root.fs
+      cursorVisible: false
+      cursorDelegate: Item {}
+
+      onActiveFocusChanged: {
+        if (root.inputEnabled && !activeFocus) Qt.callLater(root.forcePasswordFocus)
+      }
+
+      onTextChanged: {
+        if (!root.syncingPasswordText) root.passwordTextEdited(text)
+        if (text.length > 0 && root.failureMessage.length > 0) root.clearFailureRequested()
+      }
+
+      onAccepted: {
+        var submitted = root.passwordText
+        root.passwordTextEdited("")
+        if (submitted.length > 0) root.submitPassword(submitted)
+      }
+
+      Keys.onPressed: function(event) {
+        if (event.key === Qt.Key_Escape || (event.modifiers & Qt.ControlModifier && event.key === Qt.Key_U)) {
+          root.passwordTextEdited("")
+          event.accepted = true
         }
       }
     }
