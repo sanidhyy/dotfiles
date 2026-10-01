@@ -38,8 +38,10 @@ o.bind("SUPER + SHIFT + L", "Linear", { webapp = "https://linear.app" })
 o.bind("SUPER + SHIFT + ALT + Y", "YouTube Music", { webapp = "https://music.youtube.com" })
 
 -- Change omarchy menu shortcut
+hl.unbind("SUPER + SPACE")
 hl.unbind("SUPER + SHIFT + SPACE")
-o.bind("SUPER + SHIFT + SPACE", "Apps menu", "omarchy-menu toggle apps")
+o.bind("SUPER + SHIFT + SPACE", "Omarchy menu", "omarchy-menu toggle")
+o.bind("SUPER + SPACE", "Apps menu", "omarchy-menu toggle apps")
 
 -- Change toggle waybar shortcut
 hl.unbind("SUPER + ALT + SPACE")

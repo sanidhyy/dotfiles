@@ -105,7 +105,7 @@ sudo limine-snapper-sync
 
 ## :framed_picture: Wallpapers
 
-You can find Catppuccin Mocha wallpapers here: [walls-catppuccin-mocha](https://github.com/orangci/walls-catppuccin-mocha).
+You can find Catppuccin Mocha wallpapers here: [walls-catppuccin-mocha](https://github.com/orangci/walls-catppuccin-mocha "orangc's Catppuccin wallpaper repository").
 
 ## :pray: Credits
 
