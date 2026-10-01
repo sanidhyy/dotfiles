@@ -116,6 +116,7 @@ stow -D systemd
 | `nvim/`         | `~/.config/nvim/`                             |
 | `omarchy/`      | `~/.config/omarchy/`                          |
 | `starship/`     | `~/.config/starship.toml`                     |
+| `systemd/`      | `~/.config/systemd/user/`                     |
 | `wireplumber/`  | `~/.config/wireplumber/`                      |
 | `system/`       | `/boot/`, `/usr/` (copy, not Stow)            |
 
