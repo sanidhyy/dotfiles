@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+THEME_NAME_FILE="$HOME/.local/state/omarchy/current/theme.name"
+STATE_DIR="$HOME/.local/state/omarchy"
+
+# only act on sunday (0) or wednesday (3)
+DOW=$(date +%w)   # 0=Sun … 6=Sat
+
+if [[ "$DOW" != "0" && "$DOW" != "3" ]]; then
+  exit 0
+fi
+
+# get theme name
+if [[ ! -f "$THEME_NAME_FILE" ]]; then
+  echo "No theme.name found" >&2
+  exit 1
+fi
+
+THEME=$(<"$THEME_NAME_FILE")
+THEME=${THEME%%$'\n'*}
+
+# collect all images
+mapfile -t CANDIDATES < <(
+  find \
+    "$HOME/.local/state/omarchy/current/theme/backgrounds" \
+    "$HOME/.config/omarchy/backgrounds/$THEME" \
+    -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' -o -iname '*.gif' \) \
+    2>/dev/null | sort -u
+)
+
+if [[ ${#CANDIDATES[@]} -eq 0 ]]; then
+  echo "No wallpapers found for theme '$THEME'" >&2
+  exit 1
+fi
+
+# pick image randomly
+PICK="${CANDIDATES[RANDOM % ${#CANDIDATES[@]}]}"
+
+# apply wallpaper
+omarchy-theme-bg-set "$PICK"

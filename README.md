@@ -12,6 +12,7 @@ My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https
 - :computer: **Foot** terminal cursor and keybinding tweaks.
 - :ledger: **Neovim** neo-tree shows hidden and gitignored files.
 - :rocket: Catppuccin-styled **Starship** prompt and **Bash** aliases.
+- :stopwatch: **Systemd** user service and timer for automatically setting random **wallpaper**.
 - :art: **GTK** 3.0 and 4.0 styles for Catppuccin Mocha.
 - :lock: **Limine** boot and **SDDM** login style configurations.
 - :film_projector: **imv** image viewer and **mpv** player configs.
@@ -54,14 +55,14 @@ stow hypr starship foot
 ./stow.sh
 ```
 
-> :warning: Do not run `stow *` — that would also pick up `.github/`, `.gitignore`, `README.md` and other unwanted files.
+> [!Warning]
+> Do not run `stow *` — that would also pick up `.github/`, `.gitignore`, `README.md` and other unwanted files.
 
-**Update or remove**
+After updating the dotfiles, **reload the systemd user manager** and enable the timer:
 
 ```bash
-stow -R hypr          # restow one package after a pull
-stow -D hypr          # unstow one package
-stow -n hypr          # dry-run (no links created)
+  systemctl --user daemon-reload
+  systemctl --user enable --now omarchy-theme-bg-random.timer
 ```
 
 **Manually copy System files.** Copy them (do not symlink).
@@ -78,6 +79,21 @@ sudo cp system/usr/share/sddm/themes/omarchy/Main.qml /usr/share/sddm/themes/oma
 # regenerate limine entries
 sudo limine-update
 sudo limine-snapper-sync
+```
+
+**Update or remove**
+
+```bash
+stow -R hypr          # restow one package after a pull
+stow -D hypr          # unstow one package
+stow -n hypr          # dry-run (no links created)
+```
+
+**To remove random wallpaper service**
+
+```bash
+systemctl --user disable --now omarchy-theme-bg-random.timer
+stow -D systemd
 ```
 
 ## :file_folder: Layout

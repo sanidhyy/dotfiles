@@ -1,0 +1,11 @@
+[Unit]
+Description=Sets random wallpaper on Sunday/Wednesday
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/omarchy-theme-bg-random
+
+[Install]
+WantedBy=graphical-session.target

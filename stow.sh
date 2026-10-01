@@ -18,9 +18,15 @@ stow \
   nvim \
   omarchy \
   starship \
+  systemd \
   wireplumber
 
 echo "Completed."
+echo
+echo "Enable systemd user service. Run:"
+echo
+echo "  systemctl --user daemon-reload"
+echo "  systemctl --user enable --now omarchy-theme-bg-random.timer"
 echo
 echo "System files are not stowed. Copy them manually (do not symlink):"
 echo

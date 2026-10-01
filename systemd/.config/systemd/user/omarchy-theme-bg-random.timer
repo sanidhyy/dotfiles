@@ -1,0 +1,10 @@
+[Unit]
+Description=Sets random wallpaper on Sunday/Wednesday
+
+[Timer]
+OnCalendar=*-*-* 00:01:00
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
