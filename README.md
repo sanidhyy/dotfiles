@@ -13,7 +13,6 @@ My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https
 - :ledger: **Neovim** neo-tree shows hidden and gitignored files.
 - :rocket: Catppuccin-styled **Starship** prompt and **Bash** aliases.
 - :art: **GTK** 3.0 and 4.0 styles for Catppuccin Mocha.
-- :framed_picture: Extra **backgrounds** for the Catppuccin Mocha wallpaper set.
 - :lock: **Limine** boot and **SDDM** login style configurations.
 - :film_projector: **imv** image viewer and **mpv** player configs.
 - :globe_with_meridians: **Brave Origin** flags plus **Lazygit** configs.
@@ -83,27 +82,30 @@ sudo limine-snapper-sync
 
 ## :file_folder: Layout
 
-| Path            | Destination                                       |
-| --------------- | ------------------------------------------------- |
-| `backgrounds/`  | `~/.config/omarchy/backgrounds/catppuccin-mocha/` |
-| `bash/`         | `~/.bashrc`                                       |
-| `brave-origin/` | `~/.config/brave-origin-flags.conf`               |
-| `environment/`  | `~/.config/environment.d/`                        |
-| `fastfetch/`    | `~/.config/fastfetch/`                            |
-| `foot/`         | `~/.config/foot/`                                 |
-| `gamemode/`     | `~/.config/gamemode.ini`                          |
-| `gtk/`          | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/`     |
-| `hypr/`         | `~/.config/hypr/`                                 |
-| `imv/`          | `~/.config/imv/`                                  |
-| `lazygit/`      | `~/.config/lazygit/`                              |
-| `local/`        | `~/.local/`                                       |
-| `mise/`         | `~/.config/mise/`                                 |
-| `mpv/`          | `~/.config/mpv/`                                  |
-| `nvim/`         | `~/.config/nvim/`                                 |
-| `omarchy/`      | `~/.config/omarchy/`                              |
-| `starship/`     | `~/.config/starship.toml`                         |
-| `wireplumber/`  | `~/.config/wireplumber/`                          |
-| `system/`       | `/boot/`, `/usr/` (copy, not Stow)                |
+| Path            | Destination                                   |
+| --------------- | --------------------------------------------- |
+| `bash/`         | `~/.bashrc`                                   |
+| `brave-origin/` | `~/.config/brave-origin-flags.conf`           |
+| `environment/`  | `~/.config/environment.d/`                    |
+| `fastfetch/`    | `~/.config/fastfetch/`                        |
+| `foot/`         | `~/.config/foot/`                             |
+| `gamemode/`     | `~/.config/gamemode.ini`                      |
+| `gtk/`          | `~/.config/gtk-3.0/` and `~/.config/gtk-4.0/` |
+| `hypr/`         | `~/.config/hypr/`                             |
+| `imv/`          | `~/.config/imv/`                              |
+| `lazygit/`      | `~/.config/lazygit/`                          |
+| `local/`        | `~/.local/`                                   |
+| `mise/`         | `~/.config/mise/`                             |
+| `mpv/`          | `~/.config/mpv/`                              |
+| `nvim/`         | `~/.config/nvim/`                             |
+| `omarchy/`      | `~/.config/omarchy/`                          |
+| `starship/`     | `~/.config/starship.toml`                     |
+| `wireplumber/`  | `~/.config/wireplumber/`                      |
+| `system/`       | `/boot/`, `/usr/` (copy, not Stow)            |
+
+## :framed_picture: Wallpapers
+
+You can find Catppuccin Mocha wallpapers here: [walls-catppuccin-mocha](https://github.com/orangci/walls-catppuccin-mocha).
 
 ## :pray: Credits
 
@@ -113,7 +115,6 @@ sudo limine-snapper-sync
 ## :page_facing_up: License and Third-Party Notes
 
 - All third-party assets (palettes, tools, wallpapers) retain their original licenses and copyrights.
-- If you are the creator of any wallpaper in the `backgrounds/` folder and would like it removed or credited, please [Contact me](https://sanidhyy.name/#contact "Contact me at my email or through this form.").
 
 ## :warning: Disclaimer
 

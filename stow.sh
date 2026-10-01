@@ -2,7 +2,6 @@
 set -euo pipefail
 
 stow \
-  backgrounds \
   bash \
   brave-origin \
   environment \
