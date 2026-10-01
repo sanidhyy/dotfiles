@@ -2,7 +2,6 @@
 set -euo pipefail
 
 THEME_NAME_FILE="$HOME/.local/state/omarchy/current/theme.name"
-STATE_DIR="$HOME/.local/state/omarchy"
 
 # only act on sunday (0) or wednesday (3)
 DOW=$(date +%w)   # 0=Sun … 6=Sat
