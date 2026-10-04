@@ -62,7 +62,7 @@ After updating the dotfiles, **reload the systemd user manager** and enable the 
 
 ```bash
   systemctl --user daemon-reload
-  systemctl --user enable --now omarchy-theme-bg-random.timer
+  systemctl --user enable --now omarchy-theme-bg-random.service
 ```
 
 **Manually copy System files.** Copy them (do not symlink).
@@ -92,7 +92,7 @@ stow -n hypr          # dry-run (no links created)
 **To remove random wallpaper service**
 
 ```bash
-systemctl --user disable --now omarchy-theme-bg-random.timer
+systemctl --user disable --now omarchy-theme-bg-random.service
 stow -D systemd
 ```
 

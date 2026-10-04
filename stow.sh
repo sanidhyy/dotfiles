@@ -26,7 +26,7 @@ echo
 echo "Enable systemd user service. Run:"
 echo
 echo "  systemctl --user daemon-reload"
-echo "  systemctl --user enable --now omarchy-theme-bg-random.timer"
+echo "  systemctl --user enable --now omarchy-theme-bg-random.service"
 echo
 echo "System files are not stowed. Copy them manually (do not symlink):"
 echo
