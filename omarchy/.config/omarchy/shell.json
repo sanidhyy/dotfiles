@@ -27,7 +27,7 @@
         {
           "id": "omarchy.clock",
           "birthYear": 2005,
-          "format": "dddd HH:mm",
+          "format": "ddd d MMM HH:mm",
           "formatAlt": "d MMMM 'W'ww yyyy",
           "lifeExpectancy": 75,
           "verticalFormat": "HH\n—\nmm"
@@ -41,6 +41,9 @@
           "id": "omarchy.tray"
         },
         {
+          "id": "omarchy.monitor"
+        },
+        {
           "id": "omarchy.network"
         },
         {
@@ -48,7 +51,7 @@
         },
         {
           "id": "omarchy.power",
-          "showPercentage": false
+          "showPercentage": true
         }
       ]
     }
