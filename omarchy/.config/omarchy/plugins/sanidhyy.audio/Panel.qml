@@ -653,9 +653,8 @@ Panel {
     text: root.outputIcon()
     tooltipText: root.nowPlaying
     onPressed: function(b) {
-      if (b === Qt.RightButton) root.toggleAllMuted()
-      else if (b === Qt.MiddleButton)
-        Quickshell.execDetached(["omarchy-shell", "media", "playPause"]) // add play/pause via middle click
+      if (b === Qt.RightButton) Quickshell.execDetached(["omarchy-shell", "media", "playPause"])
+      else if (b === Qt.MiddleButton) root.toggleAllMuted()
       else root.toggle()
     }
 
