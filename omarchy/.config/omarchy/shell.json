@@ -25,6 +25,19 @@
           "id": "omarchy.system-update"
         },
         {
+          "id": "meviusisback.hw-monitor",
+          "itemsOrder": "cpu",
+          "mode": "compact",
+          "refreshIntervalSec": "5",
+          "topProcGroup": true,
+          "topProcSort": "ram",
+          "showValues": false,
+          "showGauges": false,
+          "gpuIcon": "",
+          "ramIcon": "󰓅",
+          "cpuIcon": ""
+        },
+        {
           "id": "omarchy.clock",
           "birthYear": 2005,
           "format": "ddd d MMM HH:mm",
