@@ -75,8 +75,7 @@
     }
   ],
   "disabledPlugins": [
-    "omarchy.lock",
-    "omarchy.polkit"
+    "omarchy.lock"
   ],
   "cloneSourceRestores": [
     "sanidhyy.lock"
