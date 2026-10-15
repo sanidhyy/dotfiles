@@ -29,6 +29,7 @@
 -- o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
 
 -- Application bindings
+o.bind("SUPER + SHIFT + A", "ChatGPT", { webapp = "https://chatgpt.com" })
 o.bind("SUPER + SHIFT + S", "Steam Big Picture", { launch = "steam-bigpicture.desktop" })
 
 -- Web Apps bindings
