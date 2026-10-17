@@ -29,12 +29,12 @@
 -- o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
 
 -- Application bindings
-o.bind("SUPER + SHIFT + A", "ChatGPT", { webapp = "https://chatgpt.com" })
 o.bind("SUPER + SHIFT + S", "Steam Big Picture", { launch = "steam-bigpicture.desktop" })
+o.bind("SUPER + SHIFT + W", "WhatsApp", { launch = "zapfast.desktop" })
 
 -- Web Apps bindings
-o.bind("SUPER + SHIFT + W", "WhatsApp", { webapp = "https://web.whatsapp.com" })
 o.bind("SUPER + SHIFT + Y", "YouTube", { webapp = "https://youtube.com" })
+o.bind("SUPER + SHIFT + A", "ChatGPT", { webapp = "https://chatgpt.com" })
 o.bind("SUPER + SHIFT + L", "Linear", { webapp = "https://linear.app" })
 o.bind("SUPER + SHIFT + ALT + Y", "YouTube Music", { webapp = "https://music.youtube.com" })
 
