@@ -35,4 +35,3 @@ for _, w in ipairs({
     default = w.default,
   })
 end
-
