@@ -1,52 +1,45 @@
 {
-  "version": 1,
-  "idle": {
-    "screensaver": 150,
-    "lock": 300
-  },
   "bar": {
-    "position": "top",
-    "transparent": false,
     "centerAnchor": "omarchy.clock",
     "layout": {
+      "center": [
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "cpuIcon": "",
+          "gpuIcon": "",
+          "id": "meviusisback.hw-monitor",
+          "itemsOrder": "cpu",
+          "mode": "compact",
+          "ramIcon": "󰓅",
+          "refreshIntervalSec": "5",
+          "showGauges": false,
+          "showValues": false,
+          "topProcGroup": true,
+          "topProcSort": "ram"
+        },
+        {
+          "birthYear": 2005,
+          "format": "ddd d MMM HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "id": "omarchy.clock",
+          "lifeExpectancy": 75,
+          "verticalFormat": "HH\n—\nmm"
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
       "left": [
         {
           "id": "omarchy.menu"
         },
         {
           "id": "sanidhyy.workspaces"
-        }
-      ],
-      "center": [
-        {
-          "id": "omarchy.keyboard-layout"
-        },
-        {
-          "id": "omarchy.system-update"
-        },
-        {
-          "id": "meviusisback.hw-monitor",
-          "itemsOrder": "cpu",
-          "mode": "compact",
-          "refreshIntervalSec": "5",
-          "topProcGroup": true,
-          "topProcSort": "ram",
-          "showValues": false,
-          "showGauges": false,
-          "gpuIcon": "",
-          "ramIcon": "󰓅",
-          "cpuIcon": ""
-        },
-        {
-          "id": "omarchy.clock",
-          "birthYear": 2005,
-          "format": "ddd d MMM HH:mm",
-          "formatAlt": "d MMMM 'W'ww yyyy",
-          "lifeExpectancy": 75,
-          "verticalFormat": "HH\n—\nmm"
-        },
-        {
-          "id": "omarchy.weather"
         }
       ],
       "right": [
@@ -67,17 +60,24 @@
           "showPercentage": true
         }
       ]
-    }
+    },
+    "position": "top",
+    "transparent": false
+  },
+  "cloneSourceRestores": [
+    "sanidhyy.lock"
+  ],
+  "disabledPlugins": [
+    "omarchy.lock"
+  ],
+  "idle": {
+    "lock": 300,
+    "screensaver": 150
   },
   "plugins": [
     {
       "id": "sanidhyy.lock"
     }
   ],
-  "disabledPlugins": [
-    "omarchy.lock"
-  ],
-  "cloneSourceRestores": [
-    "sanidhyy.lock"
-  ]
+  "version": 1
 }
