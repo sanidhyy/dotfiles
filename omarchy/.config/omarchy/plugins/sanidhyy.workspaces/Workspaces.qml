@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 
 BarWidget {
@@ -84,7 +85,7 @@ BarWidget {
         bar: root.bar
         text: root.dot
         active: focused
-        activeColor: Color.accent
+        activeColor: Commons.Color.accent
         opacity: focused ? 1 : (occupied ? 0.85 : 0.35)
         horizontalMargin: 6
         verticalPadding: 6

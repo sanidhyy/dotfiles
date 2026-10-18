@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import qs.Commons
+import qs.Commons as Commons
 
 Item {
   id: root
@@ -24,8 +25,8 @@ Item {
   readonly property real u: Math.min(width, height) / 100
   readonly property int fs: Math.round(root.u * 2.1)
   readonly property int hintFontSize: Math.round(root.u * 1.25)
-  readonly property color ink: Color.foreground
-  readonly property color dim: Util.alpha(Color.foreground, 0.5)
+  readonly property color ink: Commons.Color.foreground
+  readonly property color dim: Util.alpha(Commons.Color.foreground, 0.5)
   readonly property bool errorState: failureMessage.length > 0
   readonly property var lockHints: [
     { chord: "Super+Esc", label: "Display off" },
@@ -103,7 +104,7 @@ Item {
 
   Rectangle {
     anchors.fill: parent
-    color: Color.background
+    color: Commons.Color.background
 
     MouseArea {
       anchors.fill: parent
@@ -130,7 +131,7 @@ Item {
           Line { text: root.hostName + " login: " + root.userName }
           Line { text: "Password: " }
           Line { text: " " }
-          Line { text: "Login incorrect"; color: Color.lock.textError }
+          Line { text: "Login incorrect"; color: Commons.Color.lock.textError }
           Line { text: " " }
         }
       }
@@ -188,9 +189,9 @@ Item {
       echoMode: TextInput.Password
       passwordCharacter: "\u25CF"
       passwordMaskDelay: 0
-      color: Color.lock.text
-      selectionColor: Color.lock.selection
-      selectedTextColor: Color.lock.text
+      color: Commons.Color.lock.text
+      selectionColor: Commons.Color.lock.selection
+      selectedTextColor: Commons.Color.lock.text
       font.family: Style.font.family
       font.pixelSize: root.fs
       cursorVisible: false
