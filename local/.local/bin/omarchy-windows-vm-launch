@@ -1,4 +1,0 @@
-#!/bin/bash
-
-chmod g-s ~/Windows
-exec omarchy-windows-vm launch "$@"
