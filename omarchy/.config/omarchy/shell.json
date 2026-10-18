@@ -7,17 +7,20 @@
           "id": "omarchy.keyboard-layout"
         },
         {
-          "cpuIcon": "",
-          "gpuIcon": "",
           "id": "meviusisback.hw-monitor",
-          "itemsOrder": "cpu",
-          "mode": "compact",
-          "ramIcon": "󰓅",
           "refreshIntervalSec": "5",
-          "showGauges": false,
-          "showValues": false,
           "topProcGroup": true,
-          "topProcSort": "ram"
+          "topProcSort": "ram",
+          "itemsOrder": "ram",
+          "showCpu": false,
+          "showGpu": false,
+          "showCpuTemp": false,
+          "showGpuTemp": false,
+          "showRam": true,
+          "ramIcon": "󰓅",
+          "mode": "compact",
+          "showValues": false,
+          "showGauges": false
         },
         {
           "birthYear": 2005,
@@ -64,12 +67,8 @@
     "position": "top",
     "transparent": false
   },
-  "cloneSourceRestores": [
-    "sanidhyy.lock"
-  ],
-  "disabledPlugins": [
-    "omarchy.lock"
-  ],
+  "cloneSourceRestores": ["sanidhyy.lock"],
+  "disabledPlugins": ["omarchy.lock"],
   "idle": {
     "lock": 300,
     "screensaver": 150
