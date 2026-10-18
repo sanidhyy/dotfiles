@@ -40,8 +40,6 @@ git clone https://github.com/sanidhyy/dotfiles.git
 cd dotfiles
 ```
 
-Run Stow from the repo root.
-
 **One or more files**
 
 ```bash
@@ -61,11 +59,20 @@ stow hypr starship foot
 After updating the dotfiles, **reload the systemd user manager** and enable the timer:
 
 ```bash
-  systemctl --user daemon-reload
-  systemctl --user enable --now omarchy-theme-bg-random.service
+systemctl --user daemon-reload
+systemctl --user enable --now omarchy-theme-bg-random.service
 ```
 
-**Manually copy System files.** Copy them (do not symlink).
+Install the **Hardware Monitor plugin**:
+
+```bash
+# add plugin
+omarchy plugin add https://github.com/meviusisback/omarchy-hw-monitor.git --enable
+# move plugin to center before omarchy clock
+omarchy bar move meviusisback.hw-monitor --section center --before omarchy.clock
+```
+
+**Manually copy System files**
 
 ```bash
 # backup old files
@@ -89,11 +96,25 @@ stow -D hypr          # unstow one package
 stow -n hypr          # dry-run (no links created)
 ```
 
+**Update or remove plugin**
+
+```bash
+omarchy plugin update meviusisback.hw-monitor --yes       # update hw monitor plugin
+omarchy plugin remove meviusisback.hw-monitor --yes       # remove hw monitor plugin
+```
+
 **To remove random wallpaper service**
 
 ```bash
 systemctl --user disable --now omarchy-theme-bg-random.service
 stow -D systemd
+```
+
+**Restore System files**
+
+```bash
+omarchy refresh limine
+omarchy refresh sddm
 ```
 
 ## :file_folder: Layout
