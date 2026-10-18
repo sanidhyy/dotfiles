@@ -4,6 +4,7 @@ import Quickshell.Io
 import Quickshell.Services.Pam
 import Quickshell.Wayland
 import qs.Commons
+import qs.Commons as Commons
 
 Item {
   id: root
@@ -266,7 +267,7 @@ Item {
 
     WlSessionLockSurface {
       id: lockSurface
-      color: Color.background
+      color: Commons.Color.background
 
       LockView {
         id: lockView
@@ -392,7 +393,7 @@ Item {
 
   Process {
     id: strandedLockCheckProc
-    command: ["bash", "-c", "omarchy-hyprland-session-locked"]
+    command: ["bash", "-c", "omarchy-hyprland-session-lock-stranded \"$PPID\""]
     onExited: function(exitCode) {
       // No output to read the lock off yet.
       if (exitCode === 2) return
