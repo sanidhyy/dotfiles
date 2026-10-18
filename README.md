@@ -12,7 +12,7 @@ My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https
 - :computer: **Foot** terminal cursor and keybinding tweaks.
 - :ledger: **Neovim** neo-tree shows hidden and gitignored files.
 - :rocket: Catppuccin-styled **Starship** prompt and **Bash** aliases.
-- :stopwatch: **Systemd** user service and timer for automatically setting random **wallpaper**.
+- :stopwatch: **Systemd** user service for automatically setting random **wallpaper**.
 - :art: **GTK** 3.0 and 4.0 styles for Catppuccin Mocha.
 - :lock: **Limine** boot and **SDDM** login style configurations.
 - :film_projector: **imv** image viewer and **mpv** player configs.
@@ -56,7 +56,7 @@ stow hypr starship foot
 > [!Warning]
 > Do not run `stow *` — that would also pick up `.github/`, `.gitignore`, `README.md` and other unwanted files.
 
-After updating the dotfiles, **reload the systemd user manager** and enable the timer:
+After updating the dotfiles, **reload the systemd user manager** and enable the service:
 
 ```bash
 systemctl --user daemon-reload
