@@ -67,8 +67,12 @@
     "position": "top",
     "transparent": false
   },
-  "cloneSourceRestores": ["sanidhyy.lock"],
-  "disabledPlugins": ["omarchy.lock"],
+  "cloneSourceRestores": [
+    "sanidhyy.lock"
+  ],
+  "disabledPlugins": [
+    "omarchy.lock"
+  ],
   "idle": {
     "lock": 300,
     "screensaver": 150
