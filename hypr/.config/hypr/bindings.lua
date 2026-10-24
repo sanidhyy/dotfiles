@@ -51,6 +51,12 @@ o.bind_toggle("SUPER + ALT + SPACE", "Toggle top bar", "bar")
 -- Launch about menu
 o.bind("SUPER + SHIFT + I", "About", "omarchy-launch-about")
 
+-- Toggle hyprland keybindings (e.g., for windows vm)
+o.bind("SUPER + CTRL + G", "Toggle Keybindings", hl.dsp.submap("passthrough"))
+hl.define_submap("passthrough", function()
+    hl.bind("SUPER + CTRL + G", hl.dsp.submap("reset"))
+end)
+
 -- Volume step overrides
 hl.unbind("XF86AudioRaiseVolume")
 hl.unbind("XF86AudioLowerVolume")
