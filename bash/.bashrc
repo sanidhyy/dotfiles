@@ -17,6 +17,10 @@ alias copy='wl-copy'
 alias rm='trash'
 alias cat='bat --no-paging'
 alias lg='lazygit'
+alias cl='clear'
+
+# disable vercel-cli update notification
+NO_UPDATE_NOTIFIER=1
 
 # react dev server default editor
 export REACT_EDITOR=cursor
