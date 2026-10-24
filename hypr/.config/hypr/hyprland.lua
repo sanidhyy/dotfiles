@@ -119,3 +119,10 @@ hl.window_rule({
     size = { 375, 600 },
     center = true,
 })
+
+-- Auto fullscreen windows vm
+o.window(
+  { title = "^Windows VM - Omarchy$" },
+  { fullscreen = true }
+)
+
