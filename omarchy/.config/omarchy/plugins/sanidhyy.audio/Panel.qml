@@ -452,9 +452,13 @@ Panel {
 
   function showVolumeOsd(volume) {
     if (!bar || !bar.shell) return
+
+    const percent = Math.round(volume * 100)
+
     bar.shell.summon("omarchy.osd", JSON.stringify({
       icon: outputIcon(volume),
-      value: Math.round(volume * 100)
+      value: percent,
+      progressText: percent + "%"
     }))
   }
 
