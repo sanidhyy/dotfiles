@@ -21,7 +21,7 @@ format = "[$branch]($style) "
 style = "italic mauve"
 
 [git_status]
-format     = '$all_status'
+format     = '$all_status$ahead_behind'
 style      = "teal"
 ahead      = "[⇡${count} ](sky)"
 diverged   = "[⇕⇡${ahead_count}⇣${behind_count} ](pink)"
