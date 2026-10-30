@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# omarchy:summary=Toggles transparency and dimming for the currently focused window.
+
+addr=$(hyprctl activewindow -j | jq -r '.address')
+window="address:$addr"
+
+hyprctl dispatch "hl.dsp.window.set_prop({ window = \"$window\", prop = \"opaque\", value = \"toggle\" })" >/dev/null 2>&1 || \
+  hyprctl dispatch setprop "$window" opaque toggle
+
+opaque=$(hyprctl getprop "$window" opaque)
+hyprctl dispatch "hl.dsp.window.set_prop({ window = \"$window\", prop = \"no_dim\", value = \"$opaque\" })"
+

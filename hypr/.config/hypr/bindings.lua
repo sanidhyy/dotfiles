@@ -57,6 +57,15 @@ hl.define_submap("passthrough", function()
     hl.bind("SUPER + CTRL + G", hl.dsp.submap("reset"))
 end)
 
+-- Toggle window transparency and dimming shortcut
+hl.unbind("SUPER + BACKSPACE")
+o.bind(
+  "SUPER + BACKSPACE",
+  "Toggle window transparency and dimming",
+  "omarchy-hyprland-window-transparency-dim-toggle"
+)
+
+
 -- Volume step overrides
 hl.unbind("XF86AudioRaiseVolume")
 hl.unbind("XF86AudioLowerVolume")
