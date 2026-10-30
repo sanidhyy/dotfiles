@@ -445,7 +445,7 @@ Panel {
 
   function setOutputVolume(v) {
     if (!volumeSink || !volumeSink.audio) return outputVolume
-    var volume = Math.max(0, Math.min(1, v))
+    var volume = Math.max(0, Math.min(1.5, v))
     volumeSink.audio.volume = volume
     return volume
   }
@@ -685,7 +685,7 @@ Panel {
       onMoveRequested: function(dx, dy) {
         if (!root.cursorActive) { root.cursorActive = true; return }
         if (dy !== 0) root.moveCursor(dy)
-        else if (dx !== 0) root.adjustVolume(dx * 0.05)
+        else if (dx !== 0) root.adjustVolume(dx * 0.02)
       }
       onActivateRequested: if (root.cursorActive) root.activateCursor()
       onCloseRequested: root.close()
@@ -853,8 +853,8 @@ Panel {
                 anchors.leftMargin: Style.space(6)
                 anchors.rightMargin: Style.space(6)
                 minimum: 0
-                maximum: 1
-                step: 0.05
+                maximum: 1.5
+                step: 0.02
                 value: root.outputVolume
                 opacity: root.outputMuted ? 0.5 : 1.0
                 enabled: !!root.sink
