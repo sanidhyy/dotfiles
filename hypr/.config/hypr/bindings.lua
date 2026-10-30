@@ -69,8 +69,8 @@ o.bind(
 -- Volume step overrides
 hl.unbind("XF86AudioRaiseVolume")
 hl.unbind("XF86AudioLowerVolume")
-o.bind("XF86AudioRaiseVolume", "Volume up", "omarchy-audio-output-volume +2", { locked = true, repeating = true })
-o.bind("XF86AudioLowerVolume", "Volume down", "omarchy-audio-output-volume -2", { locked = true, repeating = true })
+o.bind("XF86AudioRaiseVolume", "Volume up", "omarchy-audio-output-volume-boost raise", { locked = true, repeating = true })
+o.bind("XF86AudioLowerVolume", "Volume down", "omarchy-audio-output-volume-boost lower", { locked = true, repeating = true })
 
 -- Brightness step overrides
 hl.unbind("XF86MonBrightnessUp")
