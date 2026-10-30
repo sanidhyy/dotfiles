@@ -31,6 +31,7 @@
 -- Application bindings
 o.bind("SUPER + SHIFT + S", "Steam Big Picture", { launch = "steam-bigpicture.desktop" })
 o.bind("SUPER + SHIFT + W", "WhatsApp", { launch = "zapfast.desktop" })
+o.bind("SUPER + SHIFT + E", "VSCodium", { launch = "codium.desktop" })
 
 -- Web Apps bindings
 o.bind("SUPER + SHIFT + Y", "YouTube", { webapp = "https://youtube.com" })
