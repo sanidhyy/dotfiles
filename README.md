@@ -32,7 +32,7 @@ My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https
 
 ## :package: Using Stow
 
-You can use [GNU Stow](https://www.gnu.org/software/stow/) to easily manage your dotfiles.
+You can use [GNU Stow](https://www.gnu.org/software/stow "GNU Stow Symlink Manager") to easily manage your dotfiles.
 
 ```bash
 omarchy pkg add stow
