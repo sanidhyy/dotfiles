@@ -8,19 +8,19 @@
         },
         {
           "id": "meviusisback.hw-monitor",
-          "refreshIntervalSec": "5",
-          "topProcGroup": true,
-          "topProcSort": "ram",
           "itemsOrder": "ram",
+          "mode": "compact",
+          "ramIcon": "󰓅",
+          "refreshIntervalSec": "5",
           "showCpu": false,
-          "showGpu": false,
           "showCpuTemp": false,
+          "showGauges": false,
+          "showGpu": false,
           "showGpuTemp": false,
           "showRam": true,
-          "ramIcon": "󰓅",
-          "mode": "compact",
           "showValues": false,
-          "showGauges": false
+          "topProcGroup": true,
+          "topProcSort": "ram"
         },
         {
           "birthYear": 2005,
