@@ -18,6 +18,7 @@ alias rm='trash'
 alias cat='bat --no-paging'
 alias lg='lazygit'
 alias cl='clear'
+alias a='codex resume'
 
 # disable vercel-cli update notification
 NO_UPDATE_NOTIFIER=1
