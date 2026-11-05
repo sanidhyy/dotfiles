@@ -21,3 +21,6 @@ Thumbs.db
 # local state
 .cache/
 *.log
+
+# agent
+.AGENT
