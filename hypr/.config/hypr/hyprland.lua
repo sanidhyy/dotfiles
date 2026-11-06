@@ -3,6 +3,11 @@
 -- Omarchy's bootstrap keeps path setup out of this user config.
 dofile((os.getenv("OMARCHY_PATH") or "/usr/share/omarchy") .. "/default/hypr/bootstrap.lua")
 
+-- Replace Omarchy's automatic workspace allocation with global workspaces.
+package.preload["default.hypr.monitor-workspaces"] = function()
+  return require("hypr.workspaces")
+end
+
 -- Disable all Omarchy default bindings. Add your own in hypr/bindings.lua.
 -- omarchy_default_bindings = false
 --
@@ -125,4 +130,3 @@ o.window(
   { title = "^Windows VM - Omarchy$" },
   { fullscreen = true }
 )
-
