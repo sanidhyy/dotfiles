@@ -45,14 +45,6 @@ hl.config({
   },
 })
 
--- https://wiki.hypr.land/Configuring/Basics/Variables/#animations
-hl.config({
-  animations = {
-    -- Disable all animations.
-    enabled = false,
-  },
-})
-
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#layout
 -- hl.config({
 --   layout = {
