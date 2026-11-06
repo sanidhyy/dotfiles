@@ -22,13 +22,13 @@ My Personal dotfiles and configuration scripts based on [Catppuccin Mocha](https
 
 ## :camera_flash: Preview
 
-![Btop · LazyVim · Nautilus](/.github/images/desktop.png "Btop · LazyVim · Nautilus")
+![Quickshell · VSCode · Foot · Brave](/.github/images/desktop.png "Quickshell · VSCode · Foot · Brave")
 
-![Foot · Chromium · VSCode](/.github/images/desktop-2.png "Foot · Chromium · VSCode")
+![Fastfetch · Cliamp · Lazyvim · Cava](/.github/images/desktop-2.png "Fastfetch · Cliamp · Lazyvim · Cava")
+
+![Lazyvim · Foot · Btop · Nautilus](/.github/images/desktop-3.png "Lazyvim · Foot · Btop · Nautilus")
 
 ![Lock Screen Preview](/.github/images/lock-screen.png "Lock Screen Preview")
-
-![Unlock Preview](/.github/images/unlock.png "Unlock Preview")
 
 ## :package: Using Stow
 
