@@ -2,12 +2,20 @@
 
 # omarchy:summary=Toggles transparency and dimming for the currently focused window.
 
-addr=$(hyprctl activewindow -j | jq -r '.address')
+set -euo pipefail
+
+addr=$(hyprctl activewindow -j | jq -r '.address // empty')
+[[ -n $addr ]] || exit 0
+
 window="address:$addr"
+opacity=$(hyprctl getprop "$window" opacity)
+inactive_opacity=$(hyprctl getprop "$window" opacity_inactive)
 
-hyprctl dispatch "hl.dsp.window.set_prop({ window = \"$window\", prop = \"opaque\", value = \"toggle\" })" >/dev/null 2>&1 || \
-  hyprctl dispatch setprop "$window" opaque toggle
+if [[ $opacity == "1" && $inactive_opacity == "1" ]]; then
+  hyprctl dispatch "hl.dsp.window.tag({ window = \"$window\", tag = \"+transparent\" })"
+  hyprctl dispatch "hl.dsp.window.set_prop({ window = \"$window\", prop = \"opaque\", value = \"false\" })"
+else
+  hyprctl dispatch "hl.dsp.window.set_prop({ window = \"$window\", prop = \"opaque\", value = \"toggle\" })"
+fi
 
-opaque=$(hyprctl getprop "$window" opaque)
-hyprctl dispatch "hl.dsp.window.set_prop({ window = \"$window\", prop = \"no_dim\", value = \"$opaque\" })"
-
+hyprctl dispatch "hl.dsp.window.set_prop({ window = \"$window\", prop = \"no_dim\", value = \"toggle\" })"
