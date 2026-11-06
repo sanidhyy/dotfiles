@@ -8,10 +8,4 @@ o.launch_on_start("hyprsunset")
 o.exec_on_start("trash-empty 30")
 
 -- remind myself to turn on cooling stand
-o.exec_on_start(
-  "omarchy-notification-wait && omarchy-notification-send"
-    .. " --app-name 'Hardware Reminder'"
-    .. " -u critical -t 0"
-    .. " 'Cooling Stand'"
-    .. " 'Did you turn on the cooling stand?'"
-)
+o.exec_on_start("omarchy-notification-wait && omarchy-notification-send -u critical 'Did you turn on the cooling stand?'")
