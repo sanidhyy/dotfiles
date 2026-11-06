@@ -8,8 +8,10 @@ Item {
   id: root
 
   property string backgroundPath: ""
+  property string videoPosterPath: ""
   property int backgroundVersion: 0
   property bool fingerprintConfigured: false
+  property bool fingerprintUnavailable: false
   property bool authenticatingPassword: false
   property string failureMessage: ""
   property int failedAttempts: 0
@@ -55,6 +57,14 @@ Item {
     passwordTextEdited("")
   }
 
+  // Waking a DPMS-blanked display can stall the compositor for seconds while
+  // the monitor modesets, so the wake key's release arrives late and client-side
+  // key repeat floods the field with that character. A held key has no business
+  // typing a password; only holding Backspace/Delete to clear stays useful.
+  function dropsAutoRepeat(key) {
+    return key !== Qt.Key_Backspace && key !== Qt.Key_Delete
+  }
+
   function syncPasswordText() {
     if (passwordInput.text === passwordText) return
     syncingPasswordText = true
@@ -62,12 +72,23 @@ Item {
     syncingPasswordText = false
   }
 
+  // The field loses focus while a password is checked (it is disabled then),
+  // and forcing focus onto it would not stick until the check ends.
+  function restorePasswordFocus() {
+    if (inputEnabled && passwordInput.enabled && !passwordInput.activeFocus) forcePasswordFocus()
+  }
+
+  // A VT switch, which the NVIDIA driver forces around every suspend, takes the
+  // keyboard away and Qt drops the field's focus with it. Nothing gives it back
+  // when the keyboard returns, so typing went nowhere until the field was clicked.
+  Window.onActiveFocusItemChanged: Qt.callLater(restorePasswordFocus)
+
   onPasswordTextChanged: syncPasswordText()
   onInputEnabledChanged: {
     if (inputEnabled) Qt.callLater(forcePasswordFocus)
   }
   onDisplaysBlankChanged: {
-    if (!displaysBlank && inputEnabled) Qt.callLater(forcePasswordFocus)
+    if (!displaysBlank) Qt.callLater(restorePasswordFocus)
   }
   Component.onCompleted: {
     syncPasswordText()
@@ -110,7 +131,9 @@ Item {
       anchors.fill: parent
       hoverEnabled: true
       cursorShape: Qt.BlankCursor
-      onClicked: root.forcePasswordFocus()
+      onClicked: {
+        if (!root.displaysBlank) root.restorePasswordFocus()
+      }
     }
 
     Column {
@@ -198,7 +221,7 @@ Item {
       cursorDelegate: Item {}
 
       onActiveFocusChanged: {
-        if (root.inputEnabled && !activeFocus) Qt.callLater(root.forcePasswordFocus)
+        Qt.callLater(root.restorePasswordFocus)
       }
 
       onTextChanged: {
@@ -213,6 +236,11 @@ Item {
       }
 
       Keys.onPressed: function(event) {
+        root.wakeRequested()
+        if (event.isAutoRepeat && root.dropsAutoRepeat(event.key)) {
+          event.accepted = true
+          return
+        }
         if (event.key === Qt.Key_Escape || (event.modifiers & Qt.ControlModifier && event.key === Qt.Key_U)) {
           root.passwordTextEdited("")
           event.accepted = true
