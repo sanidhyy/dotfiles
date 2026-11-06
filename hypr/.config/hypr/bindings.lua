@@ -52,13 +52,16 @@ o.rebind("SUPER + ALT + comma", "Dismiss, invoke, or focus last notification", {
 o.rebind("SUPER + SHIFT + I", "About", "omarchy-launch-about")
 
 -- Toggle hyprland keybindings (e.g., for windows vm)
-o.bind("SUPER + CTRL + G", "Toggle Keybindings", hl.dsp.submap("passthrough"))
+o.rebind("SUPER + ALT + K", "Toggle Keybindings", hl.dsp.submap("passthrough"))
 hl.define_submap("passthrough", function()
-    hl.bind("SUPER + CTRL + G", hl.dsp.submap("reset"))
+    hl.bind("SUPER + ALT + K", hl.dsp.submap("reset"))
 end)
 
 -- Toggle window transparency and dimming shortcut
 o.rebind("SUPER + BACKSPACE", "Toggle window transparency and dimming", "omarchy-hyprland-window-transparency-dim-toggle")
+
+-- Toggle nightlight
+o.bind("SUPER + ALT + N", "Toggle nightlight", "omarchy-toggle-nightlight-4500")
 
 -- Volume step overrides
 o.rebind("XF86AudioRaiseVolume", "Volume up", "omarchy-audio-output-volume-boost raise", { locked = true, repeating = true })

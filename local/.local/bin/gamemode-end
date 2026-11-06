@@ -10,5 +10,5 @@ rm -f "$STATE"
 omarchy-hyprland-monitor-internal on || true
 [[ -n $ext && $brightness =~ ^[0-9]+$ ]] &&
   omarchy brightness display --no-osd --monitor "$ext" "${brightness}%"
-[[ $night_was_on == true ]] && omarchy toggle nightlight
+[[ $night_was_on == true ]] && omarchy-toggle-nightlight-4500
 ~/.local/bin/steam-fullscreen-fix
