@@ -36,12 +36,6 @@ require("default.hypr.toggles")
 -- Fix about window too small
 o.window("org.omarchy.about", { size = { 920, 620 } })
 
--- Remove window transparency
-hl.window_rule({
-  match = { tag = "default-opacity" },
-  opacity = "1 1",
-})
-
 -- Prevent dimming on fullscreen state, inactive photos, videos, and games
 hl.window_rule({
   match = { fullscreen = true },
