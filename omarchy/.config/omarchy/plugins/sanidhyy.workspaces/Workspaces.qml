@@ -86,39 +86,26 @@ BarWidget {
     if (target !== ids[index]) root.focusWorkspace(target)
   }
 
-  // The workspace each monitor shows carries its layout: a square tiles, a
-  // circle scrolls, and a triangle floats as Super + L does.
-  // Right-clicking cycles to the next one,
-  property string activeMode: "dwindle"
-  property bool modeStale: false
-
   function modeGlyph(mode) {
     if (mode === "scrolling") return "󰝥"
     if (mode === "floating") return "󰔶"
     return root.dot
   }
 
-  // A layout only changes through the layout commands, which ask for a refresh,
-  // or a config reload, so each workspace's mode is read once and cached rather
-  // than running the script on every workspace switch.
+  // Read each displayed workspace's layout once per refresh.
   property var modeCache: ({})
+  property var modeQueue: []
   property int modeGeneration: 0
   property int modeProcWorkspace: -1
   property int modeProcGeneration: 0
 
-  function showActiveMode() {
-    var mode = root.modeCache[root.activeWorkspaceId()]
-    if (mode !== undefined) root.activeMode = mode
-    else readMode()
-  }
-
   function readMode() {
-    if (modeProc.running) {
-      root.modeStale = true
-      return
-    }
-    var id = root.activeWorkspaceId()
-    if (id === -1) return
+    if (modeProc.running || root.modeQueue.length === 0) return
+
+    var pending = root.modeQueue.slice()
+    var id = pending.shift()
+    root.modeQueue = pending
+
     root.modeProcWorkspace = id
     root.modeProcGeneration = root.modeGeneration
     modeProc.command = ["omarchy-hyprland-workspace-layout-current", String(id)]
@@ -126,8 +113,9 @@ BarWidget {
   }
 
   function refresh() {
-    root.modeCache = ({})
     root.modeGeneration++
+    root.modeCache = ({})
+    root.modeQueue = root.workspaceIds.slice()
     readMode()
   }
 
@@ -141,12 +129,8 @@ BarWidget {
   }
 
   Component.onCompleted: refresh()
-  onMonitorChanged: root.showActiveMode()
-
-  Connections {
-    target: root.monitor
-    function onActiveWorkspaceChanged() { root.showActiveMode() }
-  }
+  onMonitorChanged: Qt.callLater(root.refresh)
+  onWorkspaceIdsChanged: Qt.callLater(root.refresh)
 
   Connections {
     target: Hyprland
@@ -169,20 +153,24 @@ BarWidget {
 
   Process {
     id: modeProc
+
     stdout: StdioCollector {
       onStreamFinished: {
         var mode = text.trim()
         // A read that started before a refresh may predate the change.
         if (!mode || root.modeProcGeneration !== root.modeGeneration) return
-        root.modeCache[root.modeProcWorkspace] = mode
-        if (root.modeProcWorkspace === root.activeWorkspaceId()) root.activeMode = mode
+
+        // Replace the object so every glyph binding observes the update.
+        var cache = {}
+        for (var id in root.modeCache) cache[id] = root.modeCache[id]
+        cache[root.modeProcWorkspace] = mode
+        root.modeCache = cache
       }
     }
+
     onExited: {
-      if (!root.modeStale) return
-      root.modeStale = false
       // Deferred: the process still reports running while it signals exit.
-      Qt.callLater(root.showActiveMode)
+      Qt.callLater(root.readMode)
     }
   }
 
@@ -218,7 +206,7 @@ BarWidget {
         readonly property bool focused: root.activeWorkspaceId() === modelData
 
         bar: root.bar
-        text: focused ? root.modeGlyph(root.activeMode) : root.dot
+        text: root.modeGlyph(root.modeCache[modelData] || "dwindle")
         active: focused
         activeColor: Commons.Color.accent
         opacity: focused ? 1 : (occupied ? 0.85 : 0.35)
