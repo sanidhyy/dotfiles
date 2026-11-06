@@ -27,6 +27,7 @@
 -- o.bind("SUPER + PERIOD", nil, { panel = "omarchy.emojis" })
 
 -- Application bindings
+o.rebind("SUPER + CTRL + RETURN", "Herdr", { omarchy = "terminal-herdr" })
 o.rebind("SUPER + SHIFT + S", "Steam Big Picture", { launch = "steam-bigpicture.desktop" })
 o.rebind("SUPER + SHIFT + W", "WhatsApp", { launch = "zapfast.desktop" })
 o.rebind("SUPER + SHIFT + E", "VSCodium", { launch = "codium.desktop" })
