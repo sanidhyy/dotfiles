@@ -1,11 +1,18 @@
 {
   "bar": {
-    "centerAnchor": "omarchy.clock",
+    "background": "opaque",
     "layout": {
       "center": [
         {
-          "id": "omarchy.keyboard-layout"
-        },
+          "birthYear": 2005,
+          "format": "ddd d MMM HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "id": "omarchy.clock",
+          "lifeExpectancy": 75,
+          "verticalFormat": "HH\n—\nmm"
+        }
+      ],
+      "centerBegin": [
         {
           "id": "meviusisback.hw-monitor",
           "itemsOrder": "ram",
@@ -21,15 +28,9 @@
           "showValues": false,
           "topProcGroup": true,
           "topProcSort": "ram"
-        },
-        {
-          "birthYear": 2005,
-          "format": "ddd d MMM HH:mm",
-          "formatAlt": "d MMMM 'W'ww yyyy",
-          "id": "omarchy.clock",
-          "lifeExpectancy": 75,
-          "verticalFormat": "HH\n—\nmm"
-        },
+        }
+      ],
+      "centerEnd": [
         {
           "id": "omarchy.weather"
         },
@@ -50,6 +51,9 @@
           "id": "omarchy.tray"
         },
         {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
           "id": "omarchy.monitor"
         },
         {
@@ -62,10 +66,10 @@
           "id": "omarchy.power",
           "showPercentage": true
         }
-      ]
+      ],
+      "tray": []
     },
-    "position": "top",
-    "transparent": false
+    "position": "top"
   },
   "cloneSourceRestores": [
     "sanidhyy.lock"
