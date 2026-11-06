@@ -77,6 +77,15 @@
   "disabledPlugins": [
     "omarchy.lock"
   ],
+  "dock": {
+    "pinned": [
+      "brave-origin",
+      "org.gnome.Nautilus",
+      "foot",
+      "steam",
+      "codium"
+    ]
+  },
   "idle": {
     "lock": 300,
     "screensaver": 150
