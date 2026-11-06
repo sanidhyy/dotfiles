@@ -32,8 +32,8 @@ echo "Install the Hardware Monitor plugin. Run:"
 echo
 echo "  # add plugin"
 echo "  omarchy plugin add https://github.com/meviusisback/omarchy-hw-monitor.git --enable"
-echo "  # move plugin to center before omarchy clock"
-echo "  omarchy bar move meviusisback.hw-monitor --section center --before omarchy.clock"
+echo "  # place plugin beside the clock, keeping the clock centered"
+echo "  omarchy bar move meviusisback.hw-monitor --section centerBegin"
 echo
 echo "System files are not stowed. Copy them manually (do not symlink):"
 echo

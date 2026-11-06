@@ -68,8 +68,8 @@ Install the **Hardware Monitor plugin**:
 ```bash
 # add plugin
 omarchy plugin add https://github.com/meviusisback/omarchy-hw-monitor.git --enable
-# move plugin to center before omarchy clock
-omarchy bar move meviusisback.hw-monitor --section center --before omarchy.clock
+# place plugin beside the clock, keeping the clock centered
+omarchy bar move meviusisback.hw-monitor --section centerBegin
 ```
 
 **Manually copy System files**
