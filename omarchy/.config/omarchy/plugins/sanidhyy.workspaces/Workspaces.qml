@@ -209,7 +209,7 @@ BarWidget {
         text: root.modeGlyph(root.modeCache[modelData] || "dwindle")
         active: focused
         activeColor: Commons.Color.accent
-        opacity: focused ? 1 : (occupied ? 0.85 : 0.35)
+        opacity: focused ? (root.monitor && root.monitor.focused ? 1 : 0.75) : (occupied ? 0.85 : 0.35)
         horizontalMargin: 6
         verticalPadding: 6
         fixedWidth: root.vertical ? root.barSize : Style.space(14)
