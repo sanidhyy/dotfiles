@@ -1,6 +1,10 @@
 [tools]
 node = "latest"
 pnpm = "latest"
-vercel = { version = "latest", allow_builds = ["esbuild"] }
+vercel = { version = "latest", allow_builds = ["esbuild"], trust_policy_excludes = ["vercel", "@vercel/*"] }
 "npm:netlify-cli" = { version = "latest", trust_policy_excludes = ["@netlify/*"] }
 codex = "latest"
+
+[settings]
+disable_tools = ["claude"]
+
