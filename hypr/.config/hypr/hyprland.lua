@@ -124,3 +124,6 @@ o.window(
   { title = "^Windows VM - Omarchy$" },
   { fullscreen = true }
 )
+
+-- Flea file picker rules
+o.window("com.thisisgm.flea.picker", { tag = "+floating-window" })

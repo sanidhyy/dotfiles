@@ -38,6 +38,10 @@ o.rebind("SUPER + SHIFT + A", "ChatGPT", { webapp = "https://chatgpt.com" })
 o.bind("SUPER + SHIFT + L", "Linear", { webapp = "https://linear.app" })
 o.bind("SUPER + SHIFT + ALT + Y", "YouTube Music", { webapp = "https://music.youtube.com" })
 
+-- Set flea as default file manager
+o.rebind("SUPER + SHIFT + F", "File manager", { launch = 'flea --gui' })
+o.rebind("SUPER + ALT + SHIFT + F", "File manager (cwd)", { launch = 'flea --gui "$(omarchy-cmd-terminal-cwd)"' })
+
 -- Change omarchy menu shortcut
 o.rebind("SUPER + SHIFT + SPACE", "Omarchy menu", { menu = "root" })
 o.rebind("SUPER + SPACE", "Apps menu", { menu = "apps" })
