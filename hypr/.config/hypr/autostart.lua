@@ -1,6 +1,10 @@
 -- Extra autostart processes.
 -- o.launch_on_start("my-service")
 
+-- hyprland crash temp fix (https://github.com/omacom/omarchy/issues/17987)
+---@diagnostic disable-next-line: lowercase-global
+omarchy_startup_cursor_pending = false
+
 -- enable auto switch to nightlight
 o.launch_on_start("hyprsunset")
 
