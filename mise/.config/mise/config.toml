@@ -4,6 +4,7 @@ pnpm = "latest"
 vercel = { version = "latest", allow_builds = ["esbuild"], trust_policy_excludes = ["vercel", "@vercel/*"] }
 "npm:netlify-cli" = { version = "latest", trust_policy_excludes = ["@netlify/*"] }
 codex = "latest"
+bun = "latest"
 
 [settings]
 disable_tools = ["claude"]
